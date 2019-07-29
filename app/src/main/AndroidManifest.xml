@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.uniconseat">
+
+    <!-- 添加接收广播的权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 获取联网权限 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 获取IMEI号权限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 获取网络状态权限 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- 电源锁 -->
+    <uses-permission android:name="android.permission.DEVICE_POWER" /> <!-- 添加控制振动器权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- 系统对话框Dialog -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"
+        tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 硬件加速对X5视频播放非常重要，建议开启 -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <dist:module dist:instant="true" />
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/unicon"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <service
+            android:name="com.example.uniconseat.LogService"
+            android:enabled="true"
+            android:exported="true"></service>
+
+        <activity
+            android:name="com.example.uniconseat.BottomNavigationActivity"
+            android:label="@string/title_activity_bottom_navigation"
+            android:parentActivityName="com.example.uniconseat.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.uniconseat.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.example.uniconseat.SeatTransferActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name="com.example.uniconseat.AuthorizationCenter"
+            android:label="授权中心"
+            android:launchMode="singleInstance"
+            android:theme="@style/Theme.AppCompat.Dialog.MinWidth" />
+        <activity
+            android:name="com.example.uniconseat.PrivacyActivity"
+            android:label="@string/menu_share"
+            android:launchMode="singleInstance"
+            android:theme="@style/Theme.AppCompat.Dialog.MinWidth" />
+        <activity
+            android:name="com.example.uniconseat.HooliganActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|navigation|keyboard"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:finishOnTaskLaunch="false"
+            android:launchMode="singleInstance"
+            android:theme="@style/HooliganActivityStyle" />
+        <activity
+            android:name="com.example.uniconseat.MySelfActivity"
+            android:label="个人中心"
+            android:launchMode="singleInstance"
+            android:theme="@style/Theme.AppCompat.Dialog.MinWidth" /> <!-- 全屏活动 -->
+        <activity
+            android:name="com.example.uniconseat.FullScreenActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/app_name" /> <!-- 文件选择 -->
+        <activity
+            android:name="com.example.uniconseat.FilechooserActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/app_name" /> <!-- 浏览器Demo -->
+        <activity
+            android:name="com.example.uniconseat.BrowserActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/menu_myresv"
+            android:launchMode="singleInstance"
+            android:theme="@style/Theme.AppCompat.Light.Dialog.MinWidth" /> <!-- X5主活动 -->
+        <activity
+            android:name="com.example.uniconseat.X5MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleInstance" /> <!-- 我的预约 -->
+        <activity
+            android:name="com.example.uniconseat.MyReserveActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/menu_myresv"
+            android:launchMode="singleInstance"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="http" />
+            </intent-filter>
+        </activity> <!-- 服务及协议 -->
+        <activity
+            android:name="com.example.uniconseat.ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:launchMode="singleInstance"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" /> <!-- android:theme="@style/AppTheme.NoActionBar" -->
+        <service
+            android:name="com.example.uniconseat.GrabSeatBackService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <service
+            android:name="com.example.uniconseat.BackUpService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name="com.example.uniconseat.TipsJumpService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name="com.example.uniconseat.GuardianService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <activity
+            android:name="com.example.uniconseat.TimingTasksActivity"
+            android:label="@string/menu_gallery"
+            android:launchMode="singleInstance" />
+
+        <service
+            android:name="com.example.uniconseat.TimingTasks"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" /> <!-- 定时任务 -->
+        <!-- android:process="system" -->
+        <!-- android:isolatedProcess="true" -->
+        <service
+            android:name="com.example.uniconseat.GrabSeat"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" /> <!-- 后台监控抢座 -->
+        <activity
+            android:name="com.example.uniconseat.LoginActivity"
+            android:label="激活"
+            android:theme="@style/Theme.AppCompat.Dialog.MinWidth" /> <!-- 注册机 -->
+        <activity
+            android:name="com.example.uniconseat.GrabSeatActivity"
+            android:label="@string/menu_tools"
+            android:launchMode="singleInstance" /> <!-- 快速抢座 -->
+        <activity
+            android:name="com.example.uniconseat.HomeActivity"
+            android:label="@string/menu_slideshow"
+            android:launchMode="singleInstance" /> <!-- 重新预约 -->
+        <receiver
+            android:name="com.example.uniconseat.BootCompleteReceiver"
+            android:enabled="true"
+            android:exported="true"> <!-- 开机自启动 -->
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </receiver> <!-- 主活动 -->
+        <activity
+            android:name="com.example.uniconseat.MainActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleInstance"
+            android:persistent="true"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

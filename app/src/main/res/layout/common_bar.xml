@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--CorrdinatorLayout相当于一个加强版的FrameLayout,用来解决Snackbar遮挡问题-->
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!--<include-->
+        <!--app:layout_anchor="@+id/fab"-->
+        <!--app:layout_anchorGravity="end|top" />-->
+    <!--&lt;!&ndash;指定一个高度值，高度值越大投影范围越大，从而就越淡&ndash;&gt;-->
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/comfab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:elevation="8dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/hometipsw"
+        app:backgroundTint="@color/colorPrimary"
+        app:pressedTranslationZ="12dp"
+        app:rippleColor="@color/colore" />
+
+</android.support.design.widget.CoordinatorLayout>

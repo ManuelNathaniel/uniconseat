@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/gray"
+    tools:context=".MySelfActivity">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            android:background="@color/colorb">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:background="@drawable/person_style">
+
+                <TextView
+                    android:id="@+id/nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/nav_nickname"
+                    android:textFontWeight="0"
+                    style="@style/person_text_color"/>
+
+                <EditText
+                    android:id="@+id/edit_nickname"
+                    style="@style/person_text_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:ems="16"
+                    android:singleLine="true"
+                    android:gravity="center"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_alignBaseline="@+id/nickname"
+                    android:layout_alignBottom="@+id/nickname"
+                    android:layout_toRightOf="@+id/nickname"
+                    android:layout_toEndOf="@+id/nickname"
+                    android:layout_gravity="center_vertical" />
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_motto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_nickname"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:background="@color/colorb"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="start"
+                android:background="@drawable/person_style">
+
+                <TextView
+                    android:id="@+id/motto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/nav_motto"
+                    style="@style/person_text_color"/>
+
+                <EditText
+                    android:id="@+id/edit_motto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/motto"
+                    android:layout_alignBottom="@+id/motto"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_toEndOf="@+id/motto"
+                    android:layout_toRightOf="@+id/motto"
+                    android:singleLine="true"
+                    android:ems="16"
+                    android:gravity="center"
+                    android:inputType="text"
+                    style="@style/person_text_color"/>
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_per_sign"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_motto"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:scrollbars="vertical"
+                android:gravity="start"
+                android:orientation="vertical"
+                android:background="@drawable/person_style">
+
+                <TextView
+                    android:id="@+id/per_sign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:scrollbars="vertical"
+                    android:text="@string/nav_per_sign"
+                    android:textFontWeight="0"
+                    style="@style/person_text_color"/>
+
+                <EditText
+                    android:id="@+id/edit_per_sign"
+                    style="@style/person_text_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/per_sign"
+                    android:layout_alignBottom="@+id/per_sign"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_toEndOf="@+id/per_sign"
+                    android:layout_toRightOf="@+id/per_sign"
+                    android:ems="16"
+                    android:singleLine="true"
+                    android:gravity="center"
+                    android:inputType="text" />
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_per_sign"
+            android:layout_gravity="center"
+            android:layout_alignEnd="@+id/card_per_sign"
+            android:gravity="center"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:background="@color/colorb"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:scrollbars="vertical"
+                android:gravity="start"
+                android:orientation="vertical"
+                android:background="@drawable/person_style">
+                <Button
+                    android:id="@+id/personButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="#00000000"
+                    android:text="确认"
+                    android:textSize="14sp"
+                    style="@style/person_text_color"/>
+
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_per_sign"
+            android:layout_gravity="center"
+            android:layout_alignStart="@+id/card_per_sign"
+            android:gravity="center"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            android:background="@color/colorb"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:scrollbars="vertical"
+                android:gravity="start"
+                android:orientation="vertical"
+                android:background="@drawable/person_style">
+                <Button
+                    android:id="@+id/personDefault"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="#00000000"
+                    android:text="默认"
+                    android:textSize="14sp"
+                    style="@style/person_text_color"/>
+
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+
+
+
+
+</android.support.constraint.ConstraintLayout>

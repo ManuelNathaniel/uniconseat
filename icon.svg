@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- 由 Microsoft Visio, SVG Export 生成 icon.svg 页-1 -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+		xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/" width="1.97545in" height="2.24628in"
+		viewBox="0 0 142.232 161.732" xml:space="preserve" color-interpolation-filters="sRGB" class="st5">
+	<v:documentProperties v:langID="2052" v:metric="true" v:viewMarkup="false"/>
+
+	<style type="text/css">
+	<![CDATA[
+		.st1 {fill:#1ba1e2}
+		.st2 {stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5}
+		.st3 {fill:#ff44a6;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.5}
+		.st4 {fill:#339933}
+		.st5 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	]]>
+	</style>
+
+	<g v:mID="0" v:index="1" v:groupContext="foregroundPage">
+		<title>页-1</title>
+		<v:pageProperties v:drawingScale="0.0393701" v:pageScale="0.0393701" v:drawingUnits="24" v:shadowOffsetX="8.50394"
+				v:shadowOffsetY="-8.50394"/>
+		<g id="group22-1" transform="translate(0.25,-20)" v:mID="22" v:groupContext="group">
+			<v:custProps>
+				<v:cp v:nameU="ShapeClass" v:lbl="ShapeClass" v:prompt="" v:type="0" v:format="" v:sortKey="" v:invis="true"
+						v:ask="false" v:langID="2052" v:cal="0" v:val="VT4(位置)"/>
+				<v:cp v:nameU="ShapeType" v:lbl="ShapeType" v:prompt="" v:type="0" v:format="" v:sortKey="" v:invis="true"
+						v:ask="false" v:langID="2052" v:cal="0" v:val="VT4(大学建筑)"/>
+			</v:custProps>
+			<v:userDefs>
+				<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				<v:ud v:nameU="ShapeClass" v:prompt="" v:val="VT0(5):26"/>
+				<v:ud v:nameU="SolSH" v:prompt="" v:val="VT15({BF0433D9-CD73-4EB5-8390-8653BE590246}):41"/>
+				<v:ud v:nameU="visLegendShape" v:prompt="" v:val="VT0(2):26"/>
+			</v:userDefs>
+			<title>大学建筑物.22</title>
+			<g id="shape23-2" v:mID="23" v:groupContext="shape" transform="translate(0,-8.93175)">
+				<title>工作表.23</title>
+				<path d="M130.34 61.28 L12.36 61.28 L1.07 88.96 L15.6 88.96 L14.34 131.09 L12.36 132.29 L12.36 141.33 L5.37 141.33
+							 L5.37 149.73 L0 149.73 L0 161.73 L141.73 161.73 L141.73 149.73 L137.32 149.73 L137.32 141.33 L130.33
+							 141.33 L130.33 132.29 L128.35 131.09 L127.09 88.96 L141.62 88.96 L130.33 61.28 L130.34 61.28 ZM115.8
+							 88.96 L114.54 132.29 L104.36 132.29 L101.69 88.96 L115.8 88.96 ZM90.4 88.96 L89.14 132.29 L78.96 132.29
+							 L77.7 88.96 L90.4 88.96 ZM65 88.96 L63.73 132.29 L53.56 132.29 L52.3 88.96 L65 88.96 ZM39.59 88.96 L38.33
+							 132.29 L28.16 132.29 L26.89 88.96 L39.59 88.96 Z" class="st1"/>
+				<path d="M130.34 61.28 L12.36 61.28 L1.07 88.96 L15.6 88.96 L14.34 131.09 L12.36 132.29 L12.36 141.33 L5.37 141.33
+							 L5.37 149.73 L0 149.73 L0 161.73 L141.73 161.73 L141.73 149.73 L137.32 149.73 L137.32 141.33 L130.33
+							 141.33 L130.33 132.29 L128.35 131.09 L127.09 88.96 L141.62 88.96 L130.33 61.28" class="st2"/>
+				<path d="" class="st2"/>
+				<path d="M115.8 88.96 L114.54 132.29 L104.36 132.29 L101.69 88.96 L115.8 88.96" class="st2"/>
+				<path d="M90.4 88.96 L89.14 132.29 L78.96 132.29 L77.7 88.96 L90.4 88.96" class="st2"/>
+				<path d="M65 88.96 L63.73 132.29 L53.56 132.29 L52.3 88.96 L65 88.96" class="st2"/>
+				<path d="M39.59 88.96 L38.33 132.29 L28.16 132.29 L26.89 88.96 L39.59 88.96" class="st2"/>
+				<path d="M13.25 132.92 L129.4 132.92" class="st2"/>
+				<path d="M12.36 141.33 L130.33 141.33" class="st2"/>
+				<path d="M5.37 149.73 L137.32 149.73" class="st2"/>
+			</g>
+			<g id="shape24-13" v:mID="24" v:groupContext="shape" transform="translate(9.71172,-52.3565)">
+				<title>工作表.24</title>
+				<path d="M68.73 151.61 L29.54 131.09 L29.54 136.93 L29.76 137.55 C30.06 138.4 37.52 158.37 66.39 161.64 C66.89 161.7
+							 67.41 161.73 67.93 161.73 C82.17 161.73 97.99 139.48 99.75 136.94 L100.54 135.79 L100.55 130.23 L68.73
+							 151.61 ZM59.35 81.29 L57.54 82.34 L5.95 112.18 L0 115.62 L6.09 118.81 L68.73 151.61 L70.6 150.35 L123.1
+							 115.07 L117.52 112.11 L61.2 82.27 L59.35 81.29 Z" class="st3"/>
+			</g>
+			<g id="shape25-15" v:mID="25" v:groupContext="shape" transform="translate(64.0968,-41.0965)">
+				<title>工作表.25</title>
+				<path d="M31.5 158.42 C31.5 159.45 29.21 161.73 28.18 161.73 L25.86 161.73 C24.83 161.73 22.54 159.45 22.54 158.42
+							 L25.46 115.64 C25.46 114.62 26.29 115.24 27.31 115.24 L26.73 115.24 C27.75 115.24 28.59 116.07 28.59
+							 117.1 L31.5 158.42 ZM12.43 96.95 C12.43 98.36 9.64 99.51 6.22 99.51 C2.78 99.51 0 98.36 0 96.95 C0 95.53
+							 2.78 91.47 6.22 91.47 C9.64 91.47 12.43 95.53 12.43 96.95 Z" class="st4"/>
+				<path d="M31.5 158.42 C31.5 159.45 29.21 161.73 28.18 161.73 L25.86 161.73 C24.83 161.73 22.54 159.45 22.54 158.42
+							 L25.46 115.64 C25.46 114.62 26.29 115.24 27.31 115.24 L26.73 115.24 C27.75 115.24 28.59 116.07 28.59
+							 117.1 L31.5 158.42" class="st2"/>
+				<path d="M7.56 97.24 L27.57 115.98" class="st2"/>
+				<path d="M12.43 96.95 C12.43 98.36 9.64 99.51 6.22 99.51 C2.78 99.51 0 98.36 0 96.95 C0 95.53 2.78 91.47 6.22 91.47
+							 C9.64 91.47 12.43 95.53 12.43 96.95" class="st2"/>
+			</g>
+		</g>
+	</g>
+</svg>

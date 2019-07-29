@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SeatTransferActivity">
+
+    <include
+        layout="@layout/progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/source_tips"
+            style="@style/InputBoxStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="15sp"
+            android:padding="3dp"
+            android:gravity="center_horizontal"
+            android:text="@string/transfer_source_tips"
+            android:textColor="#009688"
+            android:textSize="14sp" />
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/source_id_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_below="@+id/source_tips"
+            android:layout_marginTop="15sp"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            android:background="@color/colorb">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/person_style">
+
+                <TextView
+                    android:id="@+id/souurce_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/transfer_source_id"
+                    android:textFontWeight="0"
+                    style="@style/person_text_color"/>
+
+                <EditText
+                    android:id="@+id/edit_source_id"
+                    style="@style/person_text_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textSize="14sp"
+                    android:ems="11"
+                    android:singleLine="true"
+                    android:gravity="center"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_alignBaseline="@+id/souurce_id"
+                    android:layout_alignBottom="@+id/souurce_id"
+                    android:layout_toRightOf="@+id/souurce_id"
+                    android:layout_toEndOf="@+id/souurce_id"
+                    android:layout_gravity="center_vertical" />
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/source_pwd_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/source_id_card"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:background="@color/colorb"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/person_style">
+
+                <TextView
+                    android:id="@+id/source_pwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/transfer_source_pwd"
+                    style="@style/person_text_color"/>
+
+                <EditText
+                    android:id="@+id/edit_source_pwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/source_pwd"
+                    android:layout_alignBottom="@+id/source_pwd"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_toEndOf="@+id/source_pwd"
+                    android:layout_toRightOf="@+id/source_pwd"
+                    android:singleLine="true"
+                    android:textSize="14sp"
+                    android:ems="12"
+                    android:gravity="center"
+                    android:inputType="textPassword"
+                    style="@style/person_text_color"/>
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <TextView
+            android:id="@+id/target_tips"
+            style="@style/InputBoxStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/source_pwd_card"
+            android:layout_marginTop="15sp"
+            android:padding="3dp"
+            android:gravity="center_horizontal"
+            android:text="@string/transfer_target_tips"
+            android:textColor="#009688"
+            android:textSize="14sp" />
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/target_id_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_below="@+id/target_tips"
+            android:layout_marginTop="15sp"
+            android:layout_margin="@dimen/activity_horizontal_margin"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            android:background="@color/colorb">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/person_style">
+
+                <TextView
+                    android:id="@+id/target_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/transfer_target_id"
+                    android:textFontWeight="0"
+                    style="@style/person_text_color"/>
+
+                <EditText
+                    android:id="@+id/edit_target_id"
+                    style="@style/person_text_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textSize="14sp"
+                    android:ems="11"
+                    android:singleLine="true"
+                    android:gravity="center"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_alignBaseline="@+id/target_id"
+                    android:layout_alignBottom="@+id/target_id"
+                    android:layout_toRightOf="@+id/target_id"
+                    android:layout_toEndOf="@+id/target_id"
+                    android:layout_gravity="center_vertical" />
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/target_pwd_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/target_id_card"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:background="@color/colorb"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/person_style">
+
+                <TextView
+                    android:id="@+id/target_pwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/transfer_target_pwd"
+                    style="@style/person_text_color"/>
+
+                <EditText
+                    android:id="@+id/edit_target_pwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/target_pwd"
+                    android:layout_alignBottom="@+id/target_pwd"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_toEndOf="@+id/target_pwd"
+                    android:layout_toRightOf="@+id/target_pwd"
+                    android:singleLine="true"
+                    android:textSize="14sp"
+                    android:ems="12"
+                    android:gravity="center"
+                    android:inputType="textPassword"
+                    style="@style/person_text_color"/>
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_transfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/target_pwd_card"
+            android:layout_gravity="center"
+            android:layout_alignEnd="@+id/target_pwd_card"
+            android:gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:background="@color/colorb"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:scrollbars="vertical"
+                android:gravity="start"
+                android:orientation="vertical"
+                android:background="@drawable/person_style">
+                <Button
+                    android:id="@+id/transferButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="#00000000"
+                    android:text="转移"
+                    android:textSize="14sp"
+                    style="@style/person_text_color"/>
+
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <TextView
+            android:id="@+id/ent_tips"
+            style="@style/NetTipsStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/target_pwd_card"
+            android:layout_marginTop="2sp"
+            android:padding="3dp"
+            android:gravity="center_horizontal"
+            android:text="您的剩余预约时长必须大于70分钟"
+            android:textColor="#009688"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

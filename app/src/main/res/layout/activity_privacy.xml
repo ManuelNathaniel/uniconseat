@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#88888888"
+    tools:context=".PrivacyActivity">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_option"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            android:background="@color/colorb">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/person_style">
+
+                <TextView
+                    android:id="@+id/option_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:text="阅览室:"
+                    android:textFontWeight="5"
+                    android:textSize="14sp"
+                    style="@style/person_text_color"/>
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/option_room"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/option_text"
+                    android:layout_alignBottom="@+id/option_text"
+                    android:layout_toEndOf="@+id/option_text"
+                    style="@style/person_text_color"
+                    android:dropDownWidth="60dp"
+                    android:entries="@array/roomname"
+                    android:gravity="center_horizontal"
+                    android:padding="2dp"
+                    android:popupBackground="@color/colorb"
+                    android:theme="@style/AppTheme" />
+
+
+                <EditText
+                    android:id="@+id/option_seat"
+                    style="@style/person_text_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/option_text"
+                    android:layout_alignBottom="@+id/option_text"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_toEndOf="@+id/option_room"
+                    android:padding="2dp"
+                    android:ems="3"
+                    android:gravity="center"
+                    android:hint="首选座位"
+                    android:inputType="number" />
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+        <RelativeLayout
+            android:id="@+id/card_tips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_option"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:background="#00000000">
+
+            <TextView
+                android:id="@+id/option_tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="1sp"
+                android:padding="1sp"
+                android:text="每次查询约消耗500KB流量"
+                android:textFontWeight="0"
+                android:textSize="12sp"
+                android:textColor="@color/White"/>
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_diplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_tips"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:background="@color/colorb"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/person_style">
+
+                <TextView
+                    android:id="@+id/display_ts1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:textFontWeight="2"
+                    android:textSize="14sp"
+                    style="@style/person_text_color"/>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_diplay2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_diplay"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:background="@color/colorb"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/person_style">
+
+                <TextView
+                    android:id="@+id/display_ts2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:textFontWeight="2"
+                    android:textSize="14sp"
+                    style="@style/person_text_color"/>
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_diplay3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_diplay2"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:background="@color/colorb"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/person_style">
+
+                <TextView
+                    android:id="@+id/display_ts3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5sp"
+                    android:textFontWeight="2"
+                    android:textSize="14sp"
+                    style="@style/person_text_color"/>
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_diplay3"
+            android:layout_gravity="center"
+            android:layout_alignEnd="@+id/card_tips"
+            android:layout_marginBottom="5sp"
+            android:gravity="center"
+            android:layout_marginTop="1sp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:background="@color/colorb"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/person_style">
+
+                <Button
+                    android:id="@+id/option_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:background="#00000000"
+                    android:text="确认"
+                    android:textSize="14sp"
+                    style="@style/person_text_color"/>
+
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
+
+
+
+
+</android.support.constraint.ConstraintLayout>

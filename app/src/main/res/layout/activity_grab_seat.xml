@@ -1,0 +1,735 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/grab_seat_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GrabSeatActivity">
+
+    <include
+        layout="@layout/progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"/>
+
+    <include
+        layout="@layout/common_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+
+        <TextView
+            android:id="@+id/tishi"
+            style="@style/InputBoxStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="15sp"
+            android:padding="3dp"
+            android:gravity="center_horizontal"
+            android:text="@string/grab_tishi"
+            android:textColor="#009688"
+            android:textSize="14sp" />
+
+
+        <TableLayout
+            android:id="@+id/table1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="false"
+            android:layout_marginTop="50sp"
+            android:gravity="center_vertical"
+            android:shrinkColumns="0,1,2">
+
+            <!--tips1-->
+            <TableRow
+                android:id="@+id/tips1row"
+                style="@style/TipsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="true"
+                    android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tip1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="2dp"
+                    android:text="@string/grab_tips1"
+                    android:textColor="@color/colord"
+                    android:textFontWeight="0"
+                    android:textSize="12sp" />
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="2dp"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:layout_width="348dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/newcardlayout1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="2sp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        android:background="@color/colorb">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <TextView
+                                android:id="@+id/grab_username"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginTop="5dp"
+                                android:gravity="center"
+                                android:text="姓名:"
+                                android:textFontWeight="12"
+                                android:textSize="16sp" />
+
+                            <EditText
+                                android:id="@+id/edit_username"
+                                style="@style/EditTextStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBaseline="@+id/grab_username"
+                                android:layout_alignBottom="@+id/grab_username"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center"
+                                android:layout_marginStart="0dp"
+                                android:layout_marginLeft="0dp"
+                                android:layout_toEndOf="@+id/grab_username"
+                                android:layout_toRightOf="@+id/grab_username"
+                                android:ems="10"
+                                android:hint="your name"
+                                android:inputType="text"
+                                android:nextFocusDown="@id/edit_studentid" />
+                        </RelativeLayout>
+
+                    </android.support.v7.widget.CardView>
+
+
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="2dp"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:gravity="center">
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/newcardlayout2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="2sp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        android:background="@color/colorb">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <TextView
+                                android:id="@+id/grab_studentid"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="用户名:"
+                                android:textFontWeight="12"
+                                android:textSize="16sp" />
+
+                            <EditText
+                                android:id="@+id/edit_studentid"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBaseline="@+id/grab_studentid"
+                                android:layout_alignBottom="@+id/grab_studentid"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center"
+                                android:layout_marginStart="0dp"
+                                android:layout_marginLeft="0dp"
+                                android:layout_toEndOf="@+id/grab_studentid"
+                                android:layout_toRightOf="@+id/grab_studentid"
+                                android:ems="9"
+                                android:hint="your id"
+                                android:inputType="text"
+                                style="@style/EditTextStyle"
+                                android:nextFocusDown="@id/edit_password" />
+                        </RelativeLayout>
+
+                    </android.support.v7.widget.CardView>
+
+
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="2dp"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:gravity="center">
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/newcardlayout3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="2sp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        android:background="@color/colorb">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <TextView
+                                android:id="@+id/grab_password"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:text="密码:"
+                                android:textFontWeight="12"
+                                android:textSize="16dp" />
+
+                            <EditText
+                                android:id="@+id/edit_password"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBaseline="@+id/grab_password"
+                                android:layout_alignBottom="@+id/grab_password"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center"
+                                android:layout_toEndOf="@+id/grab_password"
+                                android:layout_toRightOf="@+id/grab_password"
+                                android:layout_marginStart="0dp"
+                                android:layout_marginLeft="0dp"
+                                android:ems="10"
+                                android:hint="your password"
+                                android:inputType="textPassword"
+                                style="@style/EditTextStyle"
+                                android:nextFocusDown="@id/roomidspinner" />
+                        </RelativeLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </RelativeLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="2dp"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/newcardlayout4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="2sp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        android:background="@color/colorb">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center">
+                            <TextView
+                                android:id="@+id/grab_roomid"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5sp"
+                                android:layout_marginBottom="5sp"
+                                android:text="阅览室:"
+                                android:textFontWeight="12"
+                                android:textSize="16sp" />
+
+                            <android.support.v7.widget.AppCompatSpinner
+                                android:id="@+id/roomidspinner"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBaseline="@id/grab_roomid"
+                                android:layout_alignBottom="@+id/grab_roomid"
+                                android:layout_toEndOf="@+id/grab_roomid"
+                                android:layout_marginStart="0dp"
+                                android:layout_marginTop="0dp"
+                                android:layout_marginBottom="0dp"
+                                android:dropDownWidth="90dp"
+                                android:entries="@array/roomname"
+                                android:gravity="center_vertical"
+                                android:padding="2dp"
+                                android:popupBackground="@color/colorb"
+                                android:theme="@style/AppTheme" />
+
+                            <EditText
+                                android:id="@+id/edit_prefseat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBaseline="@+id/grab_roomid"
+                                android:layout_alignBottom="@+id/grab_roomid"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center"
+                                android:layout_marginStart="0dp"
+                                android:layout_toEndOf="@+id/roomidspinner"
+                                android:textSize="14sp"
+                                android:ems="4"
+                                android:hint="首选座位"
+                                style="@style/EditTextStyle"
+                                android:inputType="number"
+                                android:nextFocusDown="@id/grab1"/>
+                        </RelativeLayout>
+
+                    </android.support.v7.widget.CardView>
+
+
+                </RelativeLayout>
+            </TableRow>
+
+            <!--tips2-->
+            <TableRow
+                android:id="@+id/tips2row"
+                style="@style/NetTipsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="1dp"
+                android:gravity="center">
+                <RelativeLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:baselineAligned="true"
+                    android:gravity="start">
+                    <com.example.uniconseat.AutoScrollTextView
+                        android:id="@+id/tip2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="1dp"
+                        android:singleLine="true"
+                        android:text="@string/grab_tips2"
+                        android:textColor="#88888888"
+                        android:textFontWeight="0"
+                        android:textSize="10sp" />
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/grab_candidate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="1dp"
+                android:gravity="center">
+
+                <RelativeLayout android:gravity="center">
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/newcardlayout5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="2sp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        android:background="@color/colorb">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/EditTextStyle"
+                            android:layout_gravity="center"
+                            android:gravity="center">
+                            <EditText
+                                android:id="@+id/grab1"
+
+                                android:background="#5596D4F1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2sp"
+                                android:layout_gravity="center_vertical"
+                                android:ems="3"
+                                android:gravity="center"
+                                android:hint="候"
+                                android:inputType="number"
+                                android:nextFocusDown="@id/grab2"/>
+
+                            <EditText
+                                android:id="@+id/grab2"
+                                android:background="#8896D4F1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBaseline="@+id/grab1"
+                                android:layout_alignBottom="@+id/grab1"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="0dp"
+                                android:layout_toEndOf="@+id/grab1"
+                                android:ems="3"
+                                android:gravity="center"
+                                android:hint="选"
+                                android:inputType="number"
+                                android:nextFocusDown="@id/grab3"/>
+
+                            <EditText
+                                android:id="@+id/grab3"
+                                android:background="#CC96D4F1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBaseline="@+id/grab2"
+                                android:layout_alignBottom="@+id/grab2"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="0dp"
+                                android:layout_toEndOf="@+id/grab2"
+                                android:ems="3"
+                                android:gravity="center"
+                                android:hint="座"
+                                android:inputType="number"
+                                android:nextFocusDown="@id/grab4"/>
+
+                            <EditText
+                                android:id="@+id/grab4"
+                                android:background="#FF96D4F1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBaseline="@+id/grab3"
+                                android:layout_alignBottom="@+id/grab3"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="0dp"
+                                android:layout_toEndOf="@+id/grab3"
+                                android:ems="3"
+                                android:gravity="center"
+                                android:hint="位"
+                                android:inputType="number"
+                                android:nextFocusDown="@id/edit_begintime"/>
+                        </RelativeLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </RelativeLayout>
+
+            </TableRow>
+
+            <!--tips3-->
+            <TableRow
+                android:id="@+id/tips3row"
+                style="@style/NetTipsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="1dp"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:baselineAligned="false"
+                    android:gravity="start">
+                    <com.example.uniconseat.AutoScrollTextView
+                        android:id="@+id/tip3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="1dp"
+                        android:text="@string/grab_tips3"
+                        android:singleLine="true"
+                        android:textColor="#88888888"
+                        android:textFontWeight="0"
+                        android:textSize="10sp" />
+                </RelativeLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="0dp"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:gravity="center">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/newcardlayout6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginTop="2sp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="2dp"
+                    android:background="@color/colorb">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center">
+                        <TextView
+                            android:id="@+id/begin_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:layout_marginTop="5sp"
+                            android:layout_marginBottom="5sp"
+                            android:text="开始时间:"
+                            android:textFontWeight="12"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/edit_begintime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
+                            android:layout_alignBaseline="@+id/begin_time"
+                            android:layout_alignBottom="@+id/begin_time"
+                            android:layout_marginStart="0dp"
+                            android:layout_toEndOf="@+id/begin_time"
+                            android:textSize="14sp"
+                            style="@style/EditTextStyle"
+                            android:ems="8"
+                            android:hint="当前时间起40分钟后"
+                            android:inputType="number" />
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                </RelativeLayout>
+            </TableRow>
+
+            <!--tips4-->
+            <TableRow
+                android:id="@+id/tips4row"
+                style="@style/NetTipsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="1dp"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:baselineAligned="false"
+                    android:gravity="center">
+
+                    <com.example.uniconseat.AutoScrollTextView
+                        android:id="@+id/tip4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="1dp"
+                        android:text="@string/grab_tips4"
+                        android:singleLine="true"
+                        android:textColor="#88888888"
+                        android:textFontWeight="0"
+                        android:textSize="10sp"/>
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="1dp"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:gravity="center">
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/newcardlayout7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="2sp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        android:background="@color/colorb">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center">
+                            <TextView
+                                android:id="@+id/back_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:layout_marginTop="5sp"
+                                android:layout_marginBottom="5sp"
+                                android:text="后台监控时长:"
+                                android:textFontWeight="12"
+                                android:textSize="16sp" />
+
+                            <EditText
+                                android:id="@+id/back_edit_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center"
+                                android:layout_alignBaseline="@+id/back_time"
+                                android:layout_alignBottom="@+id/back_time"
+                                android:layout_marginStart="0dp"
+                                android:layout_toEndOf="@+id/back_time"
+                                android:textSize="14sp"
+                                style="@style/EditTextStyle"
+                                android:ems="8"
+                                android:hint="5-60分钟"
+                                android:inputType="number" />
+                        </RelativeLayout>
+                    </android.support.v7.widget.CardView>
+
+                </RelativeLayout>
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="40sp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <ImageButton
+                        android:id="@+id/exit_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:background="@null"
+                        android:onClick="cancelSeat"
+                        android:src="@drawable/tuichu"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/exit_button"
+                        android:text="退出" />
+
+                    <ImageButton
+                        android:id="@+id/grab_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/exit_button"
+                        android:layout_alignBottom="@+id/exit_button"
+                        android:layout_marginStart="50dp"
+                        android:layout_toEndOf="@id/exit_button"
+                        android:background="@null"
+                        android:onClick="grabSeat"
+                        android:src="@drawable/yuyue"
+                        android:textSize="20sp"
+                        android:tooltipText="提交" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/grab_button"
+                        android:text="开始" />
+
+                    <ImageButton
+                        android:id="@+id/grab_save_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/grab_button"
+                        android:layout_alignBottom="@+id/grab_button"
+                        android:layout_marginStart="50dp"
+                        android:layout_toEndOf="@id/grab_button"
+                        android:background="@null"
+                        android:onClick="grabSave"
+                        android:src="@drawable/grabsave"
+                        android:textSize="20sp"
+                        android:tooltipText="保存" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/grab_save_button"
+                        android:text="保存" />
+
+                </RelativeLayout>
+            </TableRow>
+        </TableLayout>
+
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>

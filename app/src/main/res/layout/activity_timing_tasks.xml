@@ -1,0 +1,857 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TimingTasksActivity">
+
+    <include
+        layout="@layout/common_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:id="@+id/timingTasksLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/timingtishi"
+            style="@style/InputBoxStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="25sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="@string/timing_tishi"
+            android:textColor="#009688"
+            android:textSize="14sp" />
+
+        <TableLayout
+            android:id="@+id/user1Table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/timingtishi"
+            android:layout_centerInParent="false"
+            android:layout_marginTop="15sp"
+
+            android:shrinkColumns="0,1,2">
+
+
+            <!--tips1-->
+            <TableRow
+                android:id="@+id/tips11row"
+                style="@style/TipsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="true"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/tips11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="2dp"
+                        android:text="@string/timing_tips1"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textColor="@color/colord"
+                        android:textFontWeight="0"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/user1row1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="2dp"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:baselineAligned="false"
+                    android:gravity="center">
+                <android.support.v7.widget.CardView
+                    android:id="@+id/newcardlayout4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginTop="2sp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="2dp"
+                    android:background="@color/colorb">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+                        <TextView
+                            android:id="@+id/text_user1name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="5sp"
+                            android:layout_marginBottom="5sp"
+                            android:gravity="center"
+                            android:text="姓名:"
+                            android:textFontWeight="12"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/edit_user1name"
+                            style="@style/EditTextStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBaseline="@+id/text_user1name"
+                            android:layout_alignBottom="@+id/text_user1name"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="0dp"
+                            android:layout_marginLeft="0dp"
+                            android:layout_toEndOf="@+id/text_user1name"
+                            android:layout_toRightOf="@+id/text_user1name"
+                            android:ems="10"
+                            android:gravity="center"
+                            android:hint="your name"
+                            android:inputType="text"
+                            android:nextFocusDown="@id/edit_user1id" />
+                    </RelativeLayout>
+                </android.support.v7.widget.CardView>
+
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/user1row2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="2sp"
+                android:gravity="center">
+
+                <RelativeLayout android:gravity="center">
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="2sp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        android:background="@color/colorb">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <TextView
+                                android:id="@+id/text_user1id"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5sp"
+                                android:layout_marginBottom="5sp"
+                                android:text="用户名:"
+                                android:textFontWeight="12"
+                                android:textSize="16sp" />
+
+                            <EditText
+                                android:id="@+id/edit_user1id"
+                                style="@style/EditTextStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBaseline="@+id/text_user1id"
+                                android:layout_alignBottom="@+id/text_user1id"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="0dp"
+                                android:layout_marginLeft="0dp"
+                                android:layout_toEndOf="@+id/text_user1id"
+                                android:layout_toRightOf="@+id/text_user1id"
+                                android:ems="9"
+                                android:gravity="center"
+                                android:hint="your id"
+                                android:inputType="text"
+                                android:nextFocusDown="@id/edit_user1password" />
+                        </RelativeLayout>
+                    </android.support.v7.widget.CardView>
+
+
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/user1row3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="2sp"
+                android:gravity="center">
+
+                <RelativeLayout android:gravity="center">
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="2sp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        android:background="@color/colorb">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <TextView
+                                android:id="@+id/text_user1password"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5sp"
+                                android:layout_marginBottom="5sp"
+                                android:text="密码:"
+                                android:textFontWeight="12"
+                                android:textSize="16sp" />
+
+                            <EditText
+                                android:id="@+id/edit_user1password"
+                                style="@style/EditTextStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBaseline="@+id/text_user1password"
+                                android:layout_alignBottom="@+id/text_user1password"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="0dp"
+                                android:layout_marginLeft="0dp"
+                                android:layout_toEndOf="@+id/text_user1password"
+                                android:layout_toRightOf="@+id/text_user1password"
+                                android:ems="10"
+                                android:gravity="center"
+                                android:hint="your password"
+                                android:inputType="textPassword"
+                                android:nextFocusDown="@id/user1roomidspinner" />
+                        </RelativeLayout>
+                    </android.support.v7.widget.CardView>
+
+                </RelativeLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/user1row4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="2sp"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="2sp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        android:background="@color/colorb">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/text_user1roomid"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5sp"
+                                android:layout_marginBottom="5sp"
+                                android:text="阅览室:"
+                                android:textFontWeight="12"
+                                android:textSize="16sp" />
+
+                            <android.support.v7.widget.AppCompatSpinner
+                                android:id="@+id/user1roomidspinner"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBaseline="@+id/text_user1roomid"
+                                android:layout_alignBottom="@+id/text_user1roomid"
+                                android:layout_marginStart="0dp"
+                                android:layout_toEndOf="@+id/text_user1roomid"
+                                android:layout_toRightOf="@+id/text_user1roomid"
+                                android:dropDownWidth="90dp"
+                                android:entries="@array/roomname"
+                                android:gravity="center_vertical"
+                                android:padding="2dp"
+                                android:popupBackground="@color/colorb"
+                                android:theme="@style/AppTheme" />
+
+                            <EditText
+                                android:id="@+id/edit_user1prefseat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBaseline="@+id/user1roomidspinner"
+                                android:layout_alignBottom="@+id/user1roomidspinner"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="0dp"
+                                android:layout_toEndOf="@+id/user1roomidspinner"
+                                android:textSize="14sp"
+                                style="@style/EditTextStyle"
+                                android:ems="4"
+                                android:gravity="center_vertical"
+                                android:hint="首选座位"
+                                android:inputType="number" />
+                        </RelativeLayout>
+                    </android.support.v7.widget.CardView>
+
+                </RelativeLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/user1candidate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="2sp"
+                android:gravity="center">
+
+                <RelativeLayout android:gravity="center">
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="0sp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        android:background="@color/colorb">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            style="@style/EditTextStyle"
+                            android:layout_gravity="center"
+                            android:gravity="center">
+                            <EditText
+                                android:id="@+id/candidate1"
+                                android:background="#5596D4F1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:ems="3"
+                                android:gravity="center"
+                                android:hint="候"
+                                android:inputType="number" />
+
+
+                            <EditText
+                                android:id="@+id/candidate2"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBaseline="@+id/candidate1"
+                                android:layout_alignBottom="@+id/candidate1"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="0dp"
+                                android:layout_toEndOf="@+id/candidate1"
+                                android:background="#8896D4F1"
+                                android:ems="3"
+                                android:gravity="center"
+                                android:hint="选"
+                                android:inputType="number" />
+
+                            <EditText
+                                android:id="@+id/candidate3"
+
+                                android:background="#CC96D4F1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBaseline="@+id/candidate1"
+                                android:layout_alignBottom="@+id/candidate1"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="0dp"
+                                android:layout_toEndOf="@+id/candidate2"
+                                android:ems="3"
+                                android:gravity="center"
+                                android:hint="座"
+                                android:inputType="number" />
+
+                            <EditText
+                                android:id="@+id/candidate4"
+                                android:background="#FF96D4F1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBaseline="@+id/candidate1"
+                                android:layout_alignBottom="@+id/candidate1"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="0dp"
+                                android:layout_toEndOf="@+id/candidate3"
+                                android:ems="3"
+                                android:gravity="center"
+                                android:hint="位"
+                                android:inputType="number" />
+                        </RelativeLayout>
+                    </android.support.v7.widget.CardView>
+
+                </RelativeLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/user1row5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="2sp"
+                android:gravity="center">
+
+                <RelativeLayout android:gravity="center">
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="2sp"
+                        android:layout_marginBottom="2dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="2dp"
+                        android:background="@color/colorb">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center">
+                            <TextView
+                                android:id="@+id/begin_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5sp"
+                                android:gravity="center_horizontal"
+                                android:text="时间段:"
+                                android:textFontWeight="12"
+                                android:textSize="16sp" />
+
+                            <Button
+                                android:id="@+id/user1starttime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBaseline="@+id/begin_time"
+                                android:layout_alignBottom="@+id/begin_time"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="9dp"
+                                android:layout_marginLeft="9dp"
+                                android:layout_marginBottom="-13dp"
+                                android:layout_toEndOf="@+id/begin_time"
+                                android:layout_toRightOf="@+id/begin_time"
+                                android:background="#00000000"
+                                android:drawableLeft="@drawable/ic_access_time_black_24dp"
+                                android:gravity="center" />
+
+                            <Button
+                                android:id="@+id/user1endtime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBaseline="@+id/user1starttime"
+                                android:layout_alignBottom="@+id/user1starttime"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="9dp"
+                                android:layout_marginLeft="9dp"
+                                android:layout_marginBottom="-1dp"
+                                android:layout_toEndOf="@+id/user1starttime"
+                                android:layout_toRightOf="@+id/user1starttime"
+                                android:background="#00000000"
+                                android:drawableLeft="@drawable/ic_timelapse_black_24dp"
+                                android:gravity="center" />
+                        </RelativeLayout>
+                    </android.support.v7.widget.CardView>
+
+
+                </RelativeLayout>
+            </TableRow>
+
+            <!--tipsend-->
+            <TableRow
+                android:id="@+id/tipsendrow"
+                style="@style/TipsStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="true"
+                    android:gravity="center">
+                    <com.example.uniconseat.AutoScrollTextView
+                        android:id="@+id/tipsend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_margin="2dp"
+                        android:text="@string/timing_tipsend"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textFontWeight="0"
+                        android:textSize="10dp" />
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/user16"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_marginTop="20sp"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="30sp"
+                    android:gravity="center">
+
+                    <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/longRunTips"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:thumb="@drawable/switch_custom_thumb_selector"
+                        android:track="@drawable/switch_custom_track_selector"
+                        android:switchTextAppearance="@style/SwitchTheme"
+                        android:layout_alignBaseline="@+id/saveuser1_button"
+                        android:switchMinWidth="150sp"
+                        android:showText="false"
+                        android:checked="false"
+                        android:textOff="OFF"
+                        android:textOn="ON"/>
+
+                    <Button
+                        android:id="@+id/saveuser1_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="100sp"
+                        android:background="@drawable/button_shape"
+                        android:drawableStart="@drawable/save32"
+                        android:gravity="center_vertical"
+                        android:text="保存" />
+
+
+                </RelativeLayout>
+            </TableRow>
+        </TableLayout>
+
+        <TableLayout
+            android:id="@+id/user2Table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/user1Table"
+            android:layout_centerInParent="false"
+            android:layout_marginTop="15sp"
+            android:gravity="center_vertical"
+            android:shrinkColumns="0,1,2"
+            android:visibility="gone">
+
+            <TableRow
+                android:id="@+id/user2row1"
+                style="@style/InputBoxStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/text_user2name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="5sp"
+                        android:layout_marginBottom="5sp"
+                        android:gravity="center"
+                        android:text="姓名:"
+                        android:textFontWeight="12"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/edit_user2name"
+                        style="@style/EditTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/text_user2name"
+                        android:layout_alignBottom="@+id/text_user2name"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_toEndOf="@+id/text_user2name"
+                        android:layout_toRightOf="@+id/text_user2name"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="your name"
+                        android:inputType="text"
+                        android:nextFocusDown="@id/edit_user2id" />
+
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/user2row2"
+                style="@style/InputBoxStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="5sp"
+                android:gravity="center">
+
+                <RelativeLayout android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/text_user2id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5sp"
+                        android:text="用户名:"
+                        android:textFontWeight="12"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/edit_user2id"
+                        style="@style/EditTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/text_user2id"
+                        android:layout_alignBottom="@+id/text_user2id"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_toEndOf="@+id/text_user2id"
+                        android:layout_toRightOf="@+id/text_user2id"
+                        android:ems="9"
+                        android:gravity="center"
+                        android:hint="your id"
+                        android:inputType="number"
+                        android:nextFocusDown="@id/edit_user2password" />
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/user2row3"
+                style="@style/InputBoxStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="5sp"
+                android:gravity="center">
+
+                <RelativeLayout android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/text_user2password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5sp"
+                        android:text="密码:"
+                        android:textFontWeight="12"
+                        android:textSize="16sp" />
+
+                    <EditText
+                        android:id="@+id/edit_user2password"
+                        style="@style/EditTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/text_user2password"
+                        android:layout_alignBottom="@+id/text_user2password"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_toEndOf="@+id/text_user2password"
+                        android:layout_toRightOf="@+id/text_user2password"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="your password"
+                        android:inputType="numberPassword"
+                        android:nextFocusDown="@id/user2roomidspinner" />
+                </RelativeLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/user2row4"
+                style="@style/InputBoxStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="5sp"
+                android:gravity="center">
+
+                <RelativeLayout android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/text_user2roomid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5sp"
+                        android:text="阅览室:"
+                        android:textFontWeight="12"
+                        android:textSize="16sp" />
+
+                    <android.support.v7.widget.AppCompatSpinner
+                        android:id="@+id/user2roomidspinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/text_user2roomid"
+                        android:layout_alignBaseline="@id/text_user2roomid"
+                        android:layout_alignBottom="@+id/text_user2roomid"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_toRightOf="@+id/text_user2roomid"
+                        android:dropDownWidth="90dp"
+                        android:entries="@array/roomname"
+                        android:gravity="center_horizontal"
+                        android:padding="8dp"
+                        android:popupBackground="@color/colorb"
+                        android:theme="@style/AppTheme" />
+
+                    <EditText
+                        android:id="@+id/edit_user2prefseat"
+                        style="@style/EditTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/user2roomidspinner"
+                        android:layout_alignBottom="@+id/user2roomidspinner"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_toEndOf="@+id/user2roomidspinner"
+                        android:layout_toRightOf="@+id/user2roomidspinner"
+                        android:ems="4"
+                        android:gravity="center"
+                        android:hint="首选座位"
+                        android:inputType="number" />
+                </RelativeLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/user2row5"
+                style="@style/InputBoxStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="5sp"
+                android:gravity="center">
+
+                <RelativeLayout android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/begin_time2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5sp"
+                        android:gravity="center_horizontal"
+                        android:text="时间段:"
+                        android:textFontWeight="12"
+                        android:textSize="16sp" />
+
+                    <Button
+                        android:id="@+id/user2starttime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/begin_time2"
+                        android:layout_alignBottom="@+id/begin_time2"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_toEndOf="@+id/begin_time2"
+                        android:layout_toRightOf="@+id/begin_time2"
+                        android:background="#00000000"
+                        android:drawableLeft="@drawable/ic_access_time_black_24dp"
+                        android:gravity="center" />
+
+                    <Button
+                        android:id="@+id/user2endtime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/user2starttime"
+                        android:layout_alignBottom="@+id/user2starttime"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="15sp"
+                        android:layout_marginLeft="15sp"
+                        android:layout_marginBottom="0dp"
+                        android:layout_toEndOf="@+id/user2starttime"
+                        android:layout_toRightOf="@+id/user2starttime"
+                        android:background="#00000000"
+                        android:drawableLeft="@drawable/ic_timelapse_black_24dp"
+                        android:gravity="center" />
+                </RelativeLayout>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/user26"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_marginTop="5sp"
+                android:gravity="end">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="30sp"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/saveuser2_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="100sp"
+                        android:background="@drawable/button_shape"
+                        android:contextClickable="true"
+                        android:drawableLeft="@drawable/save32"
+                        android:gravity="center_vertical"
+                        android:text="保存" />
+                </RelativeLayout>
+            </TableRow>
+        </TableLayout>
+    </RelativeLayout>
+
+    <android.support.constraint.Group
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</android.support.constraint.ConstraintLayout>

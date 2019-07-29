@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="#44888888"
+    tools:context=".AuthorizationCenter">
+
+    <android.support.v7.widget.CardView
+            android:id="@+id/card_over"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            android:background="@color/colorb">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/person_style">
+
+                <TextView
+                    android:id="@+id/over_display_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="在其他应用之上显示"
+                    android:textFontWeight="5"
+                    android:textSize="14sp"
+                    style="@style/person_text_color"/>
+
+                <Button
+                    android:id="@+id/over_display"
+                    style="@style/person_text_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30sp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="0dp"
+                    android:layout_toRightOf="@+id/over_display_text"
+                    android:background="#00000000"
+                    android:gravity="center"
+                    android:text="授权"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+            android:id="@+id/card_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_below="@+id/card_over"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            android:background="@color/colorb">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/person_style">
+
+                <TextView
+                    android:id="@+id/phone_state_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="读取手机的身份状态"
+                    android:textFontWeight="5"
+                    android:textSize="14sp"
+                    style="@style/person_text_color"/>
+
+                <Button
+                    android:id="@+id/phone_state"
+                    style="@style/person_text_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30sp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="0dp"
+                    android:layout_toRightOf="@+id/phone_state_text"
+                    android:background="#00000000"
+                    android:text="授权"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_ignore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_below="@+id/card_phone"
+        android:layout_marginTop="2dp"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        android:background="@color/colorb">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/person_style">
+
+            <TextView
+                android:id="@+id/ignore_battery_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="忽略该应用电池优化"
+                android:textFontWeight="5"
+                android:textSize="14sp"
+                style="@style/person_text_color"/>
+
+            <Button
+                android:id="@+id/ignore_battery"
+                android:layout_width="wrap_content"
+                android:layout_height="30sp"
+                android:layout_gravity="center"
+                android:textColor="@color/colord"
+                android:gravity="center"
+                android:layout_marginLeft="0dp"
+                android:layout_toRightOf="@+id/ignore_battery_text"
+                android:background="#00000000"
+                android:text="必要"
+                android:textSize="14sp"
+                android:layout_margin="5sp"
+                android:padding="5sp"/>
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/card_ignore"
+        android:background="#00000000"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/option_tips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="@string/option_tips"
+            android:textFontWeight="5"
+            android:textSize="14sp"
+            android:textColor="@color/White"
+            android:layout_margin="1sp"
+            android:padding="1sp"/>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
