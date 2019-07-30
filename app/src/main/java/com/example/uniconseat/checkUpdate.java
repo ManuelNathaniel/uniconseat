@@ -229,7 +229,8 @@ public class checkUpdate {
      *
      */
     public static void getApkFromService(){
-        final String finalUri = "https://github.com/ManuelNathaniel/uniconseat/raw/master/app/release/app-release.apk";
+        //final String finalUri = "https://github.com/ManuelNathaniel/uniconseat/raw/master/app/release/app-release.apk";
+        final String finalUri = "https://github.com/ManuelNathaniel/uniconseat/raw/master/app/src/main/res/drawable/savesmall.png";
         final ProgressBar pd = null;
         new Thread(new Runnable() {
             @Override
@@ -251,6 +252,7 @@ public class checkUpdate {
                     InputStream is = conn.getInputStream();
                     long time = System.currentTimeMillis();//当前时间的毫秒数
                     File file = new File(UPDATE_PATH_MEMORY_DIR + File.separator + "app-release.apk");
+                    Log.e("upgradeAdress",UPDATE_PATH_MEMORY_DIR + File.separator + "savesmall.png");
                     FileOutputStream fos = new FileOutputStream(file);
                     BufferedInputStream bis = new BufferedInputStream(is);
                     byte[] buffer = new byte[1024];
