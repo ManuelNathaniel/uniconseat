@@ -251,8 +251,15 @@ public class checkUpdate {
 
                     InputStream is = conn.getInputStream();
                     long time = System.currentTimeMillis();//当前时间的毫秒数
-                    File file = new File(UPDATE_PATH_MEMORY_DIR + File.separator + "app-release.apk");
-                    Log.e("upgradeAdress",UPDATE_PATH_MEMORY_DIR + File.separator + "savesmall.png");
+                    File file;
+                    if (getCurrUpdateType() == MEMORY_TYPE){
+                        file = new File(UPDATE_PATH_MEMORY_DIR + File.separator + "app-release" + netVersionName + ".apk");
+                        Log.e("upgradeAdress",UPDATE_PATH_MEMORY_DIR + File.separator + "savesmall.png");
+                    }else {
+                        file = new File(UPDATE_PATH_SDCARD_DIR + File.separator + "app-release.apk");
+                        Log.e("upgradeAdress",UPDATE_PATH_SDCARD_DIR + File.separator + "savesmall.png");
+                    }
+
                     FileOutputStream fos = new FileOutputStream(file);
                     BufferedInputStream bis = new BufferedInputStream(is);
                     byte[] buffer = new byte[1024];
@@ -264,7 +271,7 @@ public class checkUpdate {
                     while ((len = bis.read(buffer)) != -1) {
                         fos.write(buffer, 0, len);
                         total += len;
-                        rate = total / all;
+                        rate = total / all * 100;
                         if (rate < 0.1){
                             rate = 0;
                         }else {
