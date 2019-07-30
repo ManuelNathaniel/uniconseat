@@ -57,7 +57,7 @@ public class BrowserActivity extends AppCompatActivity {
     private Button mGo;
     private EditText mUrl;
 
-    private static final String mHomeUrl = "http://seat.ysu.edu.cn/clientweb/m/ic2/default.aspx";
+    private static final String mHomeUrl = "https://github.com/ManuelNathaniel/uniconseat/raw/master/app/release/app-release.apk";
     private static final String TAG = "SdkDemo";
     private static final int MAX_LENGTH = 14;
     private boolean mNeedTestPage = false;

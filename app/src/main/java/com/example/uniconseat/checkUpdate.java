@@ -1,16 +1,26 @@
 package com.example.uniconseat;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.PowerManager;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -25,6 +35,7 @@ import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,9 +48,13 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+import static android.content.Context.NOTIFICATION_SERVICE;
 import static com.linsh.utilseverywhere.AppUtils.getPackageName;
 import static com.linsh.utilseverywhere.ContextUtils.getFilesDir;
 import static com.linsh.utilseverywhere.ContextUtils.getPackageManager;
+import static com.linsh.utilseverywhere.ContextUtils.getSystemService;
+import static com.linsh.utilseverywhere.ContextUtils.startActivity;
+import static com.linsh.utilseverywhere.ResourceUtils.getResources;
 
 public class checkUpdate {
     private static final String TAG = "upgrade";
@@ -47,12 +62,12 @@ public class checkUpdate {
     public static String UPDATE_PATH_SDCARD_DIR;     //日志文件在sdcard中的路径
     public static final int SDCARD_TYPE = 0;          //记录类型为存储在SD卡下面
     public static final int MEMORY_TYPE = 1;          //记录类型为存储在内存中
-    static String netVersionCode,netVersionName,upTips,curVersionName;
+    static String netVersionCode,netVersionName,curVersionName;
     static int curVersionCode;
+    static String upTips = "更新了一些bug";
     public static Context context;
-
-
-
+    public int Id,Length;
+    static NotificationManager manager = null;
 
     public static final int MEMORY_LOG_FILE_MAX_SIZE = 10 * 1024 * 1024;           //内存中日志文件最大值，10M
     public static final int MEMORY_LOG_FILE_MONITOR_INTERVAL = 10 * 60 * 1000;     //内存中的日志文件大小监控时间间隔，10分钟
@@ -85,8 +100,9 @@ public class checkUpdate {
 
     public static void upgradeApk(Context context1){
         context = context1;
+        manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         init();
-        createLogDir();
+        getVersionFromService();
     }
 
     public static void init(){
@@ -214,43 +230,69 @@ public class checkUpdate {
      */
     public static void getApkFromService(){
         final String finalUri = "https://github.com/ManuelNathaniel/uniconseat/raw/master/app/release/app-release.apk";
+        final ProgressBar pd = null;
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
+//                    Handler handlerThree=new Handler(Looper.getMainLooper());
+//                    handlerThree.post(new Runnable(){
+//                        public void run(){
+//                            Toast.makeText(context,"正在获取新版本",Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+                    showNotification3("联创座位系统","正在连接..." ,context,99,"channel99","检查更新");
+
                     URL url = new URL(finalUri);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                     conn.setConnectTimeout(5000);
+                    float all = conn.getContentLength();
 
                     InputStream is = conn.getInputStream();
                     long time = System.currentTimeMillis();//当前时间的毫秒数
-                    File file = new File(getUpdatePath());
+                    File file = new File(UPDATE_PATH_MEMORY_DIR + File.separator + "app-release.apk");
                     FileOutputStream fos = new FileOutputStream(file);
                     BufferedInputStream bis = new BufferedInputStream(is);
                     byte[] buffer = new byte[1024];
                     int len;
-                    int total = 0;
+                    float total = 0;
+                    float rate;
+                    NumberFormat nf = NumberFormat.getNumberInstance();
+                    nf.setMaximumFractionDigits(2);
                     while ((len = bis.read(buffer)) != -1) {
                         fos.write(buffer, 0, len);
                         total += len;
+                        rate = total / all;
+                        if (rate < 0.1){
+                            rate = 0;
+                        }else {
+                            rate =  Float.parseFloat(nf.format(rate));
+                        }
                         //获取当前下载量
-//                        pd.setProgress(total);
+                        Log.e("安装包大小",String.valueOf(total));
+                        showNotification3("联创座位系统","正在下载新版" + netVersionName + ":总" + nf.format(all/1024/1024) + "M,已完成" + rate + "%",context,99,"channel99","检查更新");
                     }
                     fos.close();
                     bis.close();
                     is.close();
-                    Handler handlerThree=new Handler(Looper.getMainLooper());
-                    handlerThree.post(new Runnable(){
+                    Handler handlerT=new Handler(Looper.getMainLooper());
+                    handlerT.post(new Runnable(){
                         public void run(){
                             Toast.makeText(context,"下载完成",Toast.LENGTH_SHORT).show();
                         }
                     });
                 }catch (IOException e){
                     e.printStackTrace();
+                    try {
+                        manager.cancel(99);
+                    }catch (Exception e1){
+                        e1.printStackTrace();
+                    }
                     Handler handlerThree=new Handler(Looper.getMainLooper());
                     handlerThree.post(new Runnable(){
                         public void run(){
                             Toast.makeText(context,"下载出错",Toast.LENGTH_SHORT).show();
+                            accessError("连接超时，请关闭后重新打开");
                         }
                     });
                 }
@@ -347,6 +389,12 @@ public class checkUpdate {
                     JSONObject apkObject = new JSONObject(apkData);
                     netVersionCode = apkObject.getString("versionCode");
                     netVersionName = apkObject.getString("versionName");
+                    try {
+                        upTips = apkObject.getString("upTips");
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
                     Log.e("netVersionCode",netVersionCode);
                     Log.e("netVersionName",netVersionName);
 
@@ -376,7 +424,8 @@ public class checkUpdate {
                     Handler handlerThree=new Handler(Looper.getMainLooper());
                     handlerThree.post(new Runnable(){
                         public void run(){
-                            Toast.makeText(context,"检查出错",Toast.LENGTH_SHORT).show();
+                            accessError("连接超时，重新连接");
+                            //Toast.makeText(context,"检查出错",Toast.LENGTH_SHORT).show();
                         }
                     });
                 } catch (Exception e) {
@@ -384,7 +433,8 @@ public class checkUpdate {
                     Handler handlerThree=new Handler(Looper.getMainLooper());
                     handlerThree.post(new Runnable(){
                         public void run(){
-                            Toast.makeText(context,"获取版本信息出错",Toast.LENGTH_SHORT).show();
+                            accessError("获取版本信息出错");
+                            //Toast.makeText(context,"获取版本信息出错",Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -395,13 +445,24 @@ public class checkUpdate {
     public static void alertDialog(){
         android.support.v7.app.AlertDialog.Builder builder=new android.support.v7.app.AlertDialog.Builder(context,R.style.dialog_style);
         builder.setIcon(R.drawable.upgrade);
-        builder.setTitle("联创座位系统");
-        builder.setMessage(upTips + "是否进行更新？");
+        builder.setTitle("新版特性");
+        builder.setMessage(upTips + "\n");
         builder.setCancelable(false);
-        builder.setPositiveButton("更新", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("用浏览器打开", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://github.com/ManuelNathaniel/uniconseat/raw/master/app/release/app-release.apk"));
+                startActivity(intent);
+            }
+        });
+        builder.setNeutralButton("直接下载", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 getApkFromService();
+//                Intent intent = new Intent(context,BrowserActivity.class);
+//                //MyReserveActivity.mHomeUrl = "https://github.com/ManuelNathaniel/uniconseat/raw/master/app/release/app-release.apk";
+//                startActivity(intent);
             }
         });
         builder.setNegativeButton("稍后再说", new DialogInterface.OnClickListener() {
@@ -419,5 +480,127 @@ public class checkUpdate {
         dialog.show();
     }
 
+    public static void accessError(String msg){
+        android.support.v7.app.AlertDialog.Builder builder=new android.support.v7.app.AlertDialog.Builder(context,R.style.dialog_style);
+        builder.setIcon(R.drawable.upgrade);
+        builder.setTitle("联创座位系统");
+        builder.setMessage(msg);
+        builder.setCancelable(true);
+//        builder.setPositiveButton("用浏览器打开", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                intent.setData(Uri.parse("https://github.com/ManuelNathaniel/uniconseat/raw/master/app/release/app-release.apk"));
+//                startActivity(intent);
+//            }
+//        });
+////        builder.setNeutralButton("直接下载", new DialogInterface.OnClickListener() {
+////            @Override
+////            public void onClick(DialogInterface dialog, int which) {
+////                //getApkFromService();
+////                Intent intent = new Intent(context,BrowserActivity.class);
+////                //MyReserveActivity.mHomeUrl = "https://github.com/ManuelNathaniel/uniconseat/raw/master/app/release/app-release.apk";
+////                startActivity(intent);
+////            }
+////        });
+//        builder.setNegativeButton("稍后再说", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//
+//            }
+//        });
+        android.support.v7.app.AlertDialog dialog=builder.create();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            dialog.getWindow().setType((WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY));
+        }else {
+            dialog.getWindow().setType((WindowManager.LayoutParams.TYPE_SYSTEM_ALERT));
+        }
+        dialog.show();
+    }
 
+
+    //下载进度
+    public static void showNotification(String title, String text, Context context, int id,String channelid,String channelname){
+        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        Notification notification = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel mChannel = new NotificationChannel(channelid, channelname, NotificationManager.IMPORTANCE_HIGH);
+            manager.createNotificationChannel(mChannel);
+            notification = new Notification.Builder(context)
+                    .setChannelId(channelid)
+                    .setContentTitle(title)
+                    .setContentText(text)
+                    .setWhen(System.currentTimeMillis())
+                    .setVisibility(Notification.VISIBILITY_PUBLIC)
+                    .setColor(Color.parseColor("#00000000"))
+                    .setDefaults(Notification.DEFAULT_LIGHTS)//振动
+                    .setAutoCancel(false)
+                    .setSmallIcon(R.drawable.update)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(),
+                            R.drawable.upgrade))
+                    .setFullScreenIntent(PendingIntent.getActivities(context,0,
+                            new Intent[]{new Intent(context,GrabSeatActivity.class)},
+                            PendingIntent.FLAG_CANCEL_CURRENT),false)//悬挂跳转
+                    .build();
+        }else {
+            notification = new NotificationCompat.Builder(context)
+                    .setContentTitle(title)
+                    .setContentText(text)
+                    .setWhen(System.currentTimeMillis())
+                    .setDefaults(Notification.DEFAULT_SOUND)//默认铃声
+                    .setPriority(Notification.PRIORITY_HIGH)
+                    .setVisibility(Notification.VISIBILITY_PUBLIC)
+                    .setColor(Color.parseColor("#00000000"))
+                    .setDefaults(Notification.DEFAULT_LIGHTS)//振动
+                    .setAutoCancel(false)
+                    .setSmallIcon(R.drawable.update)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(),
+                            R.drawable.upgrade))
+                    .setFullScreenIntent(PendingIntent.getActivities(context,0,
+                            new Intent[]{new Intent(context,GrabSeatActivity.class)},
+                            PendingIntent.FLAG_CANCEL_CURRENT),false)//悬挂跳转
+                    .build();
+        }
+        manager.notify(id,notification);
+    }
+    public static void showNotification3(String title, String text, Context context, int id ,String channelid,String channelname){
+        //final NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        Notification notification = null;
+        Notification notification2 = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel mChannel = new NotificationChannel(channelid, channelname, NotificationManager.IMPORTANCE_HIGH);
+            manager.createNotificationChannel(mChannel);
+            notification = new Notification.Builder(context)
+                    .setChannelId(channelid)
+                    .setContentTitle(title)
+                    .setContentText(text)
+                    .setWhen(System.currentTimeMillis())
+                    .setVisibility(Notification.VISIBILITY_PUBLIC)
+                    .setColor(Color.parseColor("#00000000"))
+                    .setAutoCancel(false)
+                    .setSmallIcon(R.drawable.update)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(),
+                            R.drawable.upgrade))
+                    .setContentIntent(PendingIntent.getActivities(context,0x0001,
+                            new Intent[]{new Intent(context,MainActivity.class)},PendingIntent.FLAG_CANCEL_CURRENT))//跳转
+                    .build();
+        }else {
+            notification = new NotificationCompat.Builder(context)
+                    .setContentTitle(title)
+                    .setContentText(text)
+                    .setWhen(System.currentTimeMillis())
+                    .setPriority(Notification.PRIORITY_HIGH)
+                    .setVisibility(Notification.VISIBILITY_PUBLIC)
+                    .setColor(Color.parseColor("#00000000"))
+                    .setAutoCancel(false)
+                    .setSmallIcon(R.drawable.update)
+                    .setLargeIcon(BitmapFactory.decodeResource(getResources(),
+                            R.drawable.upgrade))
+                    .setContentIntent(PendingIntent.getActivities(context,0x0001,
+                            new Intent[]{new Intent(context,MainActivity.class)},PendingIntent.FLAG_CANCEL_CURRENT))//跳转
+                    .build();
+        }
+        manager.notify(id,notification);
+
+    }
 }

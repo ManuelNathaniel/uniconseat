@@ -57,7 +57,7 @@ public class MyReserveActivity extends BaseActivity {
     private Button mGo;
     private EditText mUrl;
 
-    private static final String mHomeUrl = "http://seat.ysu.edu.cn/clientweb/m/ic2/default.aspx";
+    public static String mHomeUrl = "http://seat.ysu.edu.cn/clientweb/m/ic2/default.aspx";
     private static final String TAG = "SdkDemo";
     private static final int MAX_LENGTH = 14;
     private boolean mNeedTestPage = false;
@@ -275,9 +275,9 @@ public class MyReserveActivity extends BaseActivity {
         webSetting.setBuiltInZoomControls(true);
         webSetting.setUseWideViewPort(true);
         webSetting.setSupportMultipleWindows(false);
-        // webSetting.setLoadWithOverviewMode(true);
+        webSetting.setLoadWithOverviewMode(true);
         webSetting.setAppCacheEnabled(true);
-        // webSetting.setDatabaseEnabled(true);
+        webSetting.setDatabaseEnabled(true);
         webSetting.setDomStorageEnabled(true);
         webSetting.setJavaScriptEnabled(true);
         webSetting.setGeolocationEnabled(true);
@@ -510,8 +510,7 @@ public class MyReserveActivity extends BaseActivity {
     protected void onDestroy() {
         if (mTestHandler != null){
             mTestHandler.removeCallbacksAndMessages(null);
-            ToastCustom.passValue(2000,1000,2,0,100);
-            ToastCustom.getInstance(getApplicationContext()).show("已清空并退出", 2000);
+            Toast.makeText(getApplicationContext(),"清空并退出",Toast.LENGTH_SHORT).show();
             Log.e("执行mTestHandler.remove","结束");
         }
         if (mWebView != null){

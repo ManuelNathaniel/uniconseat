@@ -52,33 +52,37 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <service
-            android:name="com.example.uniconseat.LogService"
+            android:name=".checkUpdateService"
             android:enabled="true"
             android:exported="true"></service>
+        <service
+            android:name=".LogService"
+            android:enabled="true"
+            android:exported="true" />
 
         <activity
-            android:name="com.example.uniconseat.BottomNavigationActivity"
+            android:name=".BottomNavigationActivity"
             android:label="@string/title_activity_bottom_navigation"
-            android:parentActivityName="com.example.uniconseat.MainActivity">
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.uniconseat.MainActivity" />
         </activity>
         <activity
-            android:name="com.example.uniconseat.SeatTransferActivity"
+            android:name=".SeatTransferActivity"
             android:launchMode="singleInstance" />
         <activity
-            android:name="com.example.uniconseat.AuthorizationCenter"
+            android:name=".AuthorizationCenter"
             android:label="授权中心"
             android:launchMode="singleInstance"
             android:theme="@style/Theme.AppCompat.Dialog.MinWidth" />
         <activity
-            android:name="com.example.uniconseat.PrivacyActivity"
+            android:name=".PrivacyActivity"
             android:label="@string/menu_share"
             android:launchMode="singleInstance"
             android:theme="@style/Theme.AppCompat.Dialog.MinWidth" />
         <activity
-            android:name="com.example.uniconseat.HooliganActivity"
+            android:name=".HooliganActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|navigation|keyboard"
             android:excludeFromRecents="true"
             android:exported="false"
@@ -86,30 +90,30 @@
             android:launchMode="singleInstance"
             android:theme="@style/HooliganActivityStyle" />
         <activity
-            android:name="com.example.uniconseat.MySelfActivity"
+            android:name=".MySelfActivity"
             android:label="个人中心"
             android:launchMode="singleInstance"
             android:theme="@style/Theme.AppCompat.Dialog.MinWidth" /> <!-- 全屏活动 -->
         <activity
-            android:name="com.example.uniconseat.FullScreenActivity"
+            android:name=".FullScreenActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/app_name" /> <!-- 文件选择 -->
         <activity
-            android:name="com.example.uniconseat.FilechooserActivity"
+            android:name=".FilechooserActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/app_name" /> <!-- 浏览器Demo -->
         <activity
-            android:name="com.example.uniconseat.BrowserActivity"
+            android:name=".BrowserActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:label="@string/menu_myresv"
+            android:label="检查更新"
             android:launchMode="singleInstance"
             android:theme="@style/Theme.AppCompat.Light.Dialog.MinWidth" /> <!-- X5主活动 -->
         <activity
-            android:name="com.example.uniconseat.X5MainActivity"
+            android:name=".X5MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleInstance" /> <!-- 我的预约 -->
         <activity
-            android:name="com.example.uniconseat.MyReserveActivity"
+            android:name=".MyReserveActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/menu_myresv"
             android:launchMode="singleInstance"
@@ -124,12 +128,12 @@
             </intent-filter>
         </activity> <!-- 服务及协议 -->
         <activity
-            android:name="com.example.uniconseat.ScrollingActivity"
+            android:name=".ScrollingActivity"
             android:label="@string/title_activity_scrolling"
             android:launchMode="singleInstance"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" /> <!-- android:theme="@style/AppTheme.NoActionBar" -->
         <service
-            android:name="com.example.uniconseat.GrabSeatBackService"
+            android:name=".GrabSeatBackService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
@@ -139,52 +143,52 @@
             android:required="false" />
 
         <service
-            android:name="com.example.uniconseat.BackUpService"
+            android:name=".BackUpService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
-            android:name="com.example.uniconseat.TipsJumpService"
+            android:name=".TipsJumpService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
-            android:name="com.example.uniconseat.GuardianService"
+            android:name=".GuardianService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <activity
-            android:name="com.example.uniconseat.TimingTasksActivity"
+            android:name=".TimingTasksActivity"
             android:label="@string/menu_gallery"
             android:launchMode="singleInstance" />
 
         <service
-            android:name="com.example.uniconseat.TimingTasks"
+            android:name=".TimingTasks"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" /> <!-- 定时任务 -->
         <!-- android:process="system" -->
         <!-- android:isolatedProcess="true" -->
         <service
-            android:name="com.example.uniconseat.GrabSeat"
+            android:name=".GrabSeat"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" /> <!-- 后台监控抢座 -->
         <activity
-            android:name="com.example.uniconseat.LoginActivity"
+            android:name=".LoginActivity"
             android:label="激活"
             android:theme="@style/Theme.AppCompat.Dialog.MinWidth" /> <!-- 注册机 -->
         <activity
-            android:name="com.example.uniconseat.GrabSeatActivity"
+            android:name=".GrabSeatActivity"
             android:label="@string/menu_tools"
             android:launchMode="singleInstance" /> <!-- 快速抢座 -->
         <activity
-            android:name="com.example.uniconseat.HomeActivity"
+            android:name=".HomeActivity"
             android:label="@string/menu_slideshow"
             android:launchMode="singleInstance" /> <!-- 重新预约 -->
         <receiver
-            android:name="com.example.uniconseat.BootCompleteReceiver"
+            android:name=".BootCompleteReceiver"
             android:enabled="true"
             android:exported="true"> <!-- 开机自启动 -->
             <intent-filter>
@@ -194,7 +198,7 @@
             </intent-filter>
         </receiver> <!-- 主活动 -->
         <activity
-            android:name="com.example.uniconseat.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleInstance"
             android:persistent="true"

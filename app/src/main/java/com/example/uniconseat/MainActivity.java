@@ -92,9 +92,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         setSupportActionBar(toolbar);
 
 
-        Utils.init(getApplicationContext());
-        checkUpdate.upgradeApk(getApplicationContext());
-        checkUpdate.getVersionFromService();
+//        Utils.init(getApplicationContext());
+//        checkUpdateService.context = getApplicationContext();
+//        Intent intentUpgrade = new Intent(getApplicationContext(),checkUpdateService.class);
+//        startService(intentUpgrade);
 
         //软件到期检查
         String systemTime = CommonFunction.systemTime();
@@ -368,6 +369,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         Button function8 = findViewById(R.id.fun_button8);
         Button function9 = findViewById(R.id.fun_button9);
         Button function10 = findViewById(R.id.fun_button10);
+        Button function11 = findViewById(R.id.fun_button11);
 
         function1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -475,6 +477,17 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             @Override
             public void onClick(View v) {
                 feedbackDialog("反馈","是否将错误代码反馈，请选择前往方式，或点击空白处取消");
+            }
+        });
+        function11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"检查更新",Toast.LENGTH_SHORT).show();
+                Utils.init(getApplicationContext());
+                checkUpdate.upgradeApk(getApplicationContext());
+//                checkUpdateService.context = getApplicationContext();
+//                Intent intentUpgrade = new Intent(getApplicationContext(),checkUpdateService.class);
+//                startService(intentUpgrade);
             }
         });
     }
