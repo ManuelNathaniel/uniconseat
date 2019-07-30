@@ -306,6 +306,37 @@
             </RelativeLayout>
         </android.support.v7.widget.CardView>
 
+        <android.support.v7.widget.CardView
+            android:id="@+id/hc12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hc11"
+            android:gravity="center"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="2dp"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="2dp"
+            android:background="#22888888"
+            android:visibility="gone">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <Button
+                    android:id="@+id/fun_button12"
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp"
+                    android:layout_marginStart="5sp"
+                    android:drawableEnd="@drawable/inter"
+                    android:gravity="center|start"
+                    android:text="本地存储"
+                    android:textColor="#AA000000"
+                    android:textSize="16sp"
+                    android:textFontWeight="0"
+                    android:background="#00000000"/>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
 
     </RelativeLayout>
 

@@ -27,6 +27,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -45,6 +46,7 @@ import android.widget.Toast;
 
 import com.linsh.utilseverywhere.Utils;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -69,10 +71,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         mainActivityStart = true;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        ToastCustom.passValue(2000,1000,2,0,100);
-        ToastCustom.getInstance(getApplicationContext()).show("点击按钮无响应时，您需点击右上角前往悬浮显示，将权限设置为允许", 2000);
-
+        //检查更新
+        Utils.init(getApplicationContext());
+        checkUpdate.upgradeApk(getApplicationContext());
+        //启动日志记录
         Intent intentLogService = new Intent(getApplicationContext(),LogService.class);
         startService(intentLogService);
 
@@ -91,11 +93,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
-//        Utils.init(getApplicationContext());
-//        checkUpdateService.context = getApplicationContext();
-//        Intent intentUpgrade = new Intent(getApplicationContext(),checkUpdateService.class);
-//        startService(intentUpgrade);
 
         //软件到期检查
         String systemTime = CommonFunction.systemTime();
@@ -132,8 +129,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 Intent intentLogin = new Intent(MainActivity.this,LoginActivity.class);
                 startActivity(intentLogin);
            }else {
-                ToastCustom.passValue(2000,1000,2,0,100);
-                ToastCustom.getInstance(MainActivity.this).show("欢迎使用座位预约系统", 2000);
+                Toast.makeText(getApplicationContext(),"欢迎使用座位预约系统",Toast.LENGTH_SHORT).show();
            }
         }
 
@@ -370,6 +366,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         Button function9 = findViewById(R.id.fun_button9);
         Button function10 = findViewById(R.id.fun_button10);
         Button function11 = findViewById(R.id.fun_button11);
+        Button function12 = findViewById(R.id.fun_button12);
 
         function1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -485,9 +482,40 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 Toast.makeText(getApplicationContext(),"检查更新",Toast.LENGTH_SHORT).show();
                 Utils.init(getApplicationContext());
                 checkUpdate.upgradeApk(getApplicationContext());
-//                checkUpdateService.context = getApplicationContext();
-//                Intent intentUpgrade = new Intent(getApplicationContext(),checkUpdateService.class);
-//                startService(intentUpgrade);
+            }
+        });
+        function12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Uri photoURI = FileProvider.getUriForFile(context, context.getApplicationContext().getPackageName() + ".provider", createImageFile());
+                checkUpdate.init();
+                Log.e("checkUpdate-init","1");
+                File file = new File(checkUpdate.getUpdatePath("README.txt"));
+                Log.e("file","1");
+                File parentFlie = new File(file.getParent());
+//                Log.e("parentfile","1");
+//                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//                intent.setDataAndType(Uri.fromFile(parentFlie), "file/*");
+//                //intent.addCategory(Intent.CATEGORY_OPENABLE );
+//                intent.addCategory(Intent.CATEGORY_DEFAULT);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                startActivity(intent);
+//                Log.e("startActivity","1");
+
+                parentFlie = file;
+                int length = parentFlie.getPath().length();
+                Uri uri = Uri.fromFile(new File(parentFlie.getPath().substring(1,length)));
+                Intent installIntent = new Intent(Intent.ACTION_VIEW);
+                installIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    installIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    uri = FileProvider.getUriForFile(getApplicationContext(), getApplication().getPackageName() + ".provider",parentFlie);
+                    installIntent.setDataAndType(uri, "*/*");
+                } else {
+                    installIntent.setDataAndType(uri, "*/*");
+                }
+                startActivity(installIntent);
+
             }
         });
     }
