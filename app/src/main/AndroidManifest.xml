@@ -210,7 +210,6 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:icon="@drawable/uniconedu"
             android:launchMode="singleInstance"
             android:persistent="true"
             android:theme="@style/AppTheme.NoActionBar">

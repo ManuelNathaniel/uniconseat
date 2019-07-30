@@ -28,12 +28,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -224,20 +227,14 @@ public class checkUpdate {
      *
      */
     public static void getApkFromService(){
-        //final String finalUri = "https://github.com/ManuelNathaniel/uniconseat/raw/master/app/release/app-release.apk";
-        final String finalUri = "https://github.com/ManuelNathaniel/uniconseat/raw/master/app/src/main/res/drawable/savesmall.png";
+        final String finalUri = "https://github.com/ManuelNathaniel/uniconseat/raw/master/app/release/app-release.apk";
+        //final String finalUri = "https://github.com/ManuelNathaniel/uniconseat/raw/master/app/src/main/res/drawable/savesmall.png";
         final ProgressBar pd = null;
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-//                    Handler handlerThree=new Handler(Looper.getMainLooper());
-//                    handlerThree.post(new Runnable(){
-//                        public void run(){
-//                            Toast.makeText(context,"正在获取新版本",Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
-                    showNotification3("联创座位系统","正在连接..." ,context,99,"channel99","检查更新");
+                    showNotification3("联创座位系统","正在获取新版本..." ,context,99,"channel99","检查更新");
 
                     URL url = new URL(finalUri);
                     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -255,55 +252,56 @@ public class checkUpdate {
                         Log.e("upgradeAdress",UPDATE_PATH_SDCARD_DIR + File.separator + "savesmall.png");
                     }
 
-                    Handler handlerT1=new Handler(Looper.getMainLooper());
-                    handlerT1.post(new Runnable(){
+                    if (file.exists()){
+                        Handler handlerT1=new Handler(Looper.getMainLooper());
+                        handlerT1.post(new Runnable(){
+                            public void run(){
+                                installApk("安装包已准备完毕，是否进行安装？",file);
+                            }
+                        });
+                        return;
+                    }
+
+                    FileOutputStream fos = new FileOutputStream(file);
+                    BufferedInputStream bis = new BufferedInputStream(is);
+                    byte[] buffer = new byte[1024];
+                    int len;
+                    float total = 0;
+                    float rate;
+
+                    NumberFormat nf = NumberFormat.getNumberInstance();
+                    nf.setMaximumFractionDigits(2);
+                    String size;
+                    if (all < 1024){
+                        size = nf.format(all) + "B";
+                    }else if (all < 1024*1024){
+                        size = nf.format(all/1024) + "KB";
+                    }else{
+                        size = nf.format(all/1024/1024) + "M";
+                    }
+                    while ((len = bis.read(buffer)) != -1) {
+                        fos.write(buffer, 0, len);
+                        total += len;
+                        rate = total / all * 100;
+                        if (rate < 0.1){
+                            rate = 0;
+                        }else {
+                            rate =  Float.parseFloat(nf.format(rate));
+                        }
+                        //获取当前下载量
+                        Log.e("安装包大小",String.valueOf(total));
+                        showNotification3("联创座位系统","正在下载新版" + netVersionName + ":总" + size + ",已完成" + rate + "%",context,99,"channel99","检查更新");
+                    }
+                    fos.close();
+                    bis.close();
+                    is.close();
+                    Handler handlerT=new Handler(Looper.getMainLooper());
+                    handlerT.post(new Runnable(){
                         public void run(){
                             Toast.makeText(context,"下载完成",Toast.LENGTH_SHORT).show();
                             installApk("下载完成，是否进行安装？",file);
                         }
                     });
-                    return;
-
-//                    FileOutputStream fos = new FileOutputStream(file);
-//                    BufferedInputStream bis = new BufferedInputStream(is);
-//                    byte[] buffer = new byte[1024];
-//                    int len;
-//                    float total = 0;
-//                    float rate;
-//
-//                    NumberFormat nf = NumberFormat.getNumberInstance();
-//                    nf.setMaximumFractionDigits(2);
-//                    String size;
-//                    if (all < 1024){
-//                        size = nf.format(all) + "B";
-//                    }else if (all < 1024*1024){
-//                        size = nf.format(all/1024) + "KB";
-//                    }else{
-//                        size = nf.format(all/1024/1024) + "M";
-//                    }
-//                    while ((len = bis.read(buffer)) != -1) {
-//                        fos.write(buffer, 0, len);
-//                        total += len;
-//                        rate = total / all * 100;
-//                        if (rate < 0.1){
-//                            rate = 0;
-//                        }else {
-//                            rate =  Float.parseFloat(nf.format(rate));
-//                        }
-//                        //获取当前下载量
-//                        Log.e("安装包大小",String.valueOf(total));
-//                        showNotification3("联创座位系统","正在下载新版" + netVersionName + ":总" + size + ",已完成" + rate + "%",context,99,"channel99","检查更新");
-//                    }
-//                    fos.close();
-//                    bis.close();
-//                    is.close();
-//                    Handler handlerT=new Handler(Looper.getMainLooper());
-//                    handlerT.post(new Runnable(){
-//                        public void run(){
-//                            Toast.makeText(context,"下载完成",Toast.LENGTH_SHORT).show();
-//                            installApk("下载完成，是否进行安装？",file);
-//                        }
-//                    });
                 }catch (IOException e){
                     e.printStackTrace();
                     try {
@@ -368,7 +366,6 @@ public class checkUpdate {
             return diff > 0 ? 1 : -1;
         }
     }
-
 
     /**
      * 检查版本是否需要更新
@@ -506,29 +503,7 @@ public class checkUpdate {
         builder.setTitle("联创座位系统");
         builder.setMessage(msg);
         builder.setCancelable(true);
-//        builder.setPositiveButton("用浏览器打开", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                Intent intent = new Intent(Intent.ACTION_VIEW);
-//                intent.setData(Uri.parse("https://github.com/ManuelNathaniel/uniconseat/raw/master/app/release/app-release.apk"));
-//                startActivity(intent);
-//            }
-//        });
-////        builder.setNeutralButton("直接下载", new DialogInterface.OnClickListener() {
-////            @Override
-////            public void onClick(DialogInterface dialog, int which) {
-////                //getApkFromService();
-////                Intent intent = new Intent(context,BrowserActivity.class);
-////                //MyReserveActivity.mHomeUrl = "https://github.com/ManuelNathaniel/uniconseat/raw/master/app/release/app-release.apk";
-////                startActivity(intent);
-////            }
-////        });
-//        builder.setNegativeButton("稍后再说", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//
-//            }
-//        });
+
         android.support.v7.app.AlertDialog dialog=builder.create();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             dialog.getWindow().setType((WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY));
