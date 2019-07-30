@@ -65,7 +65,7 @@ public class checkUpdate {
     public static final int MEMORY_TYPE = 1;          //记录类型为存储在内存中
     static String netVersionCode,netVersionName,curVersionName;
     static int curVersionCode;
-    static String upTips = "更新了一些bug";
+    static String upTips = "1.更新了一些bug";
     public static Context context;
     public int Id,Length;
     static NotificationManager manager = null;
