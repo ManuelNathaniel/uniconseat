@@ -258,9 +258,9 @@ public class GuardianService extends Service {
                 /** 每隔一秒检查一次，如果定时任务没有结束，就不再重新启动start方法，如果结束了就重新启动start方法 **/
                 if (!TimingTasks.TimingTasksCreate | !TimingTasks.TimingTasksCommandRunning){
                     serverOpen();
-                    Log.e("Guardian：系统已开放，用户没有座位",String.valueOf(reserveUser1));
+                    Log.e("Guardian：系统已开放，用户是否有座位",String.valueOf(reserveUser1));
                 }
-                long triggerAtTime = SystemClock.elapsedRealtime() + Math.abs(2 * 500);    //下一次启动的时间
+                long triggerAtTime = SystemClock.elapsedRealtime() + Math.abs(4 * 500);    //下一次启动的时间
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                     alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,triggerAtTime,pi);
                 }else {
@@ -312,6 +312,8 @@ public class GuardianService extends Service {
         if ( (sysAndTarget == 2 | ( sysAndTarget == 1 & sysAndEnd == 3)) & open){
             if (!TimingTasks.TimingTasksCommandRunning & !reserveUser1){
                 long triggerAtTime = SystemClock.elapsedRealtime() + Math.abs(2 * 1000);    //下一次启动的时间
+                Intent intentp = new Intent(getApplicationContext(),GuardianService.class);
+                pi = PendingIntent.getService(getApplicationContext(),1,intentp,0);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                     alarmManagerFinal.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,triggerAtTime,pi);
                 }else {
@@ -356,8 +358,22 @@ public class GuardianService extends Service {
                         })
                         .build();
                 //获取网站服务器时间
-                Log.e("serverOpen","获取服务器时间");
-                serverDate = getNetTime();
+                if (!open){
+                    //在没有开放的时候获取网络时间判断是否开放，否则将直接计算
+                    Log.e("serverOpen","获取服务器时间");
+                    serverDate = getNetTime();
+                }else {
+                    SharedPreferences user1sharedPreferences = getSharedPreferences("diffSysNet",MODE_PRIVATE);
+                    diffSysNet = user1sharedPreferences.getLong("diffSysNet",0);
+                    try {
+                        Log.e("serverOpen","计算服务器时间");
+                        serverDate = CommonFunction.longToDate(CommonFunction.systemTimeDate().getTime() + diffSysNet,"yyyy-MM-dd HH:mm:ss");
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                        Log.e("serverOpen","计算失败，获取服务器时间");
+                        serverDate = getNetTime();
+                    }
+                }
 
                 Log.e("serverOpen：系统时间",CommonFunction.systemTime());
                 Log.e("serverOpen：errorTime",errorTime);
@@ -378,7 +394,7 @@ public class GuardianService extends Service {
                     Handler handlerThree=new Handler(Looper.getMainLooper());
                     handlerThree.post(new Runnable(){
                         public void run(){
-                            showDialogNotCancel("网络异常","无法访问服务器，请及时检查！",GuardianService.this);
+                            showDialogNotCancel("网络异常","(G)无法访问服务器，请及时检查！",GuardianService.this);
                         }
                     });
                     return;
@@ -401,27 +417,35 @@ public class GuardianService extends Service {
                         editor.commit();
                     }
 
-                    String[] myResv = new String[]{"no","no","no","no","no"};////owner devName devId labName timeDesc
-                    try {
-                        myResv = getMyReserve(user1Id,user1Password,client);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                    if (!myResv[1].equals("no") & !myResv[4].equals("no")){
-                        return;//已有座位
+
+//                    String[] myResv = new String[]{"no","no","no","no","no"};////owner devName devId labName timeDesc
+//                    try {
+//                        myResv = getMyReserve(user1Id,user1Password,client);
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//                    if (!myResv[1].equals("no") & !myResv[4].equals("no")){
+//                        return;//已有座位
+//                    }
+
+                    diff = webTargetDate.getTime() - serverDate.getTime();//06:29:45
+                    if (diff < 0){
+                        diff = 2 * 1000;
+                        Log.e("serverOpen","重新计算定时");
                     }
 
-                    diff = webTargetDate.getTime() - serverDate.getTime();
                     long derror = Math.abs(CommonFunction.systemTimeDate().getTime() - serverDate.getTime());
                     if (derror > 2 * 60 * 1000){//两个时间的误差在2分钟
-                        diff = webTargetDate.getTime() - CommonFunction.systemTimeDate().getTime() + diffSysNet;
-                        Log.e("serverOpen：误差超过两分钟",String.valueOf(diff));
+                        Log.e("serverOpen：误差超过两分钟","实际时间：" + dateFormat.format(CommonFunction.systemTimeDate().getTime() + diffSysNet) +
+                                "系统与服务器实际时间差：" + String.valueOf(diffSysNet));
+                        diff = 2 * 1000;
                     }else {
-                        diff = webTargetDate.getTime() - serverDate.getTime();
+                        diff = 2 * 1000;
                         Log.e("serverOpen：服务器时间正常",String.valueOf(diff));
                     }
+
                     if (diff >= 60 * 1000){
                         diff = diff - 50 * 1000;
                         long h = diff / 3600/1000; long m = diff/1000 % 3600 /60; long s = diff/1000 % 60;
@@ -454,10 +478,10 @@ public class GuardianService extends Service {
                             alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,triggerAtTime,pi);
                         }
 
-                        Log.e("serverOpen：定时启动",dateFormat.format(serverDate) + h + "时" + m + "分" + s + "秒");
+                        Log.e("serverOpen：定时启动",dateFormat.format(serverDate) + "剩余" + h + "时" + m + "分" + s + "秒");
                         Log.e("serverOpen：定时启动",String.valueOf(diff));
                     }else {
-                        diff = 3 * 500;
+                        diff = 4 * 500;
                         long triggerAtTime = SystemClock.elapsedRealtime() + Math.abs(diff);    //下一次启动的时间
                         Intent intent1 = new Intent(getApplicationContext(),GuardianService.class);
                         pi = PendingIntent.getService(getApplicationContext(),0,intent1,0);
@@ -467,8 +491,8 @@ public class GuardianService extends Service {
                             alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,triggerAtTime,pi);
                         }
 
-                        Log.e("serverOpen：2s定时启动",dateFormat.format(serverDate) + "2s启动一次");
-                        Log.e("serverOpen：2s定时启动",String.valueOf(diff));
+                        Log.e("serverOpen：定时启动",dateFormat.format(serverDate) + diff/ 1000 + "s后");
+                        Log.e("serverOpen：定时启动",String.valueOf(diff));
                     }
 
                     //服务时间在06:29:45， 或者  系统时间在 06:29:45之后 06:40:00之前
@@ -482,7 +506,7 @@ public class GuardianService extends Service {
                             startService(intentTimgTask);
 
                             timingSatrt = true;
-                            long triggerAtTime = SystemClock.elapsedRealtime() + Math.abs(3 * 500);    //下一次启动的时间
+                            long triggerAtTime = SystemClock.elapsedRealtime() + Math.abs(4 * 500);    //下一次启动的时间
                             Intent intent1 = new Intent(getApplicationContext(),GuardianService.class);
                             pi = PendingIntent.getService(getApplicationContext(),0,intent1,0);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
@@ -597,8 +621,8 @@ public class GuardianService extends Service {
             //http://seat.ysu.edu.cn/clientweb/m/ic2/default.aspx
             URL url = new URL(Url);
             URLConnection uc = url.openConnection();
-            uc.setReadTimeout(4000);
-            uc.setConnectTimeout(4000);
+            uc.setReadTimeout(2500);
+            uc.setConnectTimeout(2500);
             uc.connect();
             long correctTime = uc.getDate();
             webDate = new Date(correctTime);

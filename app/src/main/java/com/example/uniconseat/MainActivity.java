@@ -43,6 +43,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.linsh.utilseverywhere.Utils;
+
 import java.text.SimpleDateFormat;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -88,6 +90,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         /* app模板自带程序 */
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        Utils.init(getApplicationContext());
+        checkUpdate.upgradeApk(getApplicationContext());
+        checkUpdate.getVersionFromService();
 
         //软件到期检查
         String systemTime = CommonFunction.systemTime();
@@ -866,6 +873,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         }).start();
     }
 
+
+    //版本检查
 
 
 }

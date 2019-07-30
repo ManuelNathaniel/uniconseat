@@ -103,7 +103,7 @@ public class LogService extends Service {
         LOG_PATH_MEMORY_DIR = getFilesDir().getAbsolutePath() + File.separator + "log";
         LOG_SERVICE_LOG_PATH = LOG_PATH_MEMORY_DIR + File.separator + logServiceLogName;
         LOG_PATH_SDCARD_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator
-                +   "automaticseatselection" + File.separator + "log";
+                +   "uniconseat" + File.separator + "log";
         createLogDir();
 
     /* ******************************************************

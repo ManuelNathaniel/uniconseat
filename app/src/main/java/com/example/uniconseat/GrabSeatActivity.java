@@ -979,7 +979,10 @@ public class GrabSeatActivity extends BaseActivity {
                     ToastText = ""; actok = 0; empty_num = 0; creditScore = true; sessionNull = false;
                     //通过检测登录排除操作状态7，通过积分信息排除操作状态4，通过检测个人预约排除操作状态2；通过有无座位余量排除状态0；
                     handlerProgress(3);
-                    client = getCredit(client);//获取用户的积分信息，以确认是否可以进行预约.该过程会给出操作状态4/7/9的判断
+                    if (CommonFunction.timeCompare(CommonFunction.systemTime(),CommonFunction.systemDelayTime(0,2) + " 06:35:00") != 3){
+                        client = getCredit(client);//获取用户的积分信息，以确认是否可以进行预约.该过程会给出操作状态4/7/9的判断
+                    }
+
 
                     if (creditScore & !sessionNull){//如果积分不为0，则可以进行预约
                         // 如果已经运行该部分内容，则操作状态4(积分不足)、操作状态6(其他异常)和操作状态7(登录成功)在接下来不必考虑，只考虑操作状态0/1/2/3/5/6/8
@@ -1668,8 +1671,8 @@ public class GrabSeatActivity extends BaseActivity {
         try {
             URL url = new URL(Url);
             URLConnection uc = url.openConnection();
-            uc.setReadTimeout(5000);
-            uc.setConnectTimeout(5000);
+            uc.setReadTimeout(4000);
+            uc.setConnectTimeout(4000);
             uc.connect();
             long correctTime = uc.getDate();
             webDate = new Date(correctTime);

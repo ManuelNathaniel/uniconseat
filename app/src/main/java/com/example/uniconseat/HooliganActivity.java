@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 public class HooliganActivity extends Activity {
     private static HooliganActivity instance;
@@ -27,7 +26,7 @@ public class HooliganActivity extends Activity {
                 | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
                 | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
                 | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
-        Toast.makeText(getApplicationContext(),"点亮屏幕",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"点亮屏幕",Toast.LENGTH_SHORT).show();
 
         Log.e("HooliganActivity","onCreate");
     }
