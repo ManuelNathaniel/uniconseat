@@ -72,8 +72,16 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //检查更新
-        Utils.init(getApplicationContext());
-        checkUpdate.upgradeApk(getApplicationContext());
+        SharedPreferences pref1 = getSharedPreferences("checkUpdate",MODE_PRIVATE);
+        boolean update = pref1.getBoolean(CommonFunction.systemDelayTime(0,2),false);
+        if (!update){
+            Editor editor1=pref1.edit();
+            editor1.putBoolean(CommonFunction.systemDelayTime(0,2), true);
+            editor1.commit();
+            Utils.init(getApplicationContext());
+            checkUpdate.upgradeApk(getApplicationContext());
+        }
+
         //启动日志记录
         Intent intentLogService = new Intent(getApplicationContext(),LogService.class);
         startService(intentLogService);
