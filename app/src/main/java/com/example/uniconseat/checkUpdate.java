@@ -520,7 +520,7 @@ public class checkUpdate {
         android.support.v7.app.AlertDialog.Builder builder=new android.support.v7.app.AlertDialog.Builder(context,R.style.dialog_style);
         builder.setIcon(R.drawable.upgrade);
         builder.setTitle("联创座位系统");
-        builder.setMessage(msg+"\n 建议使用浏览器打开");
+        builder.setMessage(msg+"\n 建议使用浏览器打开4");
         builder.setCancelable(false);
         builder.setPositiveButton("安装", new DialogInterface.OnClickListener() {
             @Override
