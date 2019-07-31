@@ -464,6 +464,7 @@ public class GrabSeatBackService extends Service {
 
             /*  2. 用户没有指定首选座位，或首选座位未能预约成功    */
             if ((prefSeat.equals("") | prefSeatState == 1)){//操作状态只存在1/3/5/6/8
+                prefSeatState = 0;
                 Log.e("GrabService","寻找空闲座位");
                 if (prefSeat.equals("")){//如果没有指定，则随机生成
                     Random a = new Random();

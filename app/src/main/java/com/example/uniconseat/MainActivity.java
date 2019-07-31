@@ -62,7 +62,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     static int Length;
     public boolean TipsJumpServiceStarted;
     public static boolean mainActivityStart = false;
-    public static boolean update;
+    public static int update;
 
     //全局变量
     private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
@@ -72,16 +72,30 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         mainActivityStart = true;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //检查更新
+        //检查更新 1每天第一次检查 2每天再次运行时检查 3点击按钮主动检查
         SharedPreferences pref1 = getSharedPreferences("checkUpdate",MODE_PRIVATE);
-        update = pref1.getBoolean(CommonFunction.systemDelayTime(0,2),false);
-        if (!update){
-            Editor editor1=pref1.edit();
-            editor1.putBoolean(CommonFunction.systemDelayTime(0,2), true);
-            editor1.commit();
-            Utils.init(getApplicationContext());
-            checkUpdate.upgradeApk(getApplicationContext());
+        update = pref1.getInt(CommonFunction.systemDelayTime(0,2),0);
+        switch (update){
+            case 0:
+                Editor editor1=pref1.edit();
+                editor1.putInt(CommonFunction.systemDelayTime(0,2), 1);
+                editor1.commit();
+                Utils.init(getApplicationContext());
+                checkUpdate.upgradeApk(getApplicationContext());
+                break;
+            case 1:
+                Editor editor2=pref1.edit();
+                editor2.putInt(CommonFunction.systemDelayTime(0,2), 2);
+                editor2.commit();
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+                default:
+                    break;
         }
+
 
         //启动日志记录
         Intent intentLogService = new Intent(getApplicationContext(),LogService.class);
@@ -484,6 +498,29 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         function11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences pref1 = getSharedPreferences("checkUpdate",MODE_PRIVATE);
+                update = pref1.getInt(CommonFunction.systemDelayTime(0,2),0);
+                switch (update){
+                    case 0:
+                        Editor editor1=pref1.edit();
+                        editor1.putInt(CommonFunction.systemDelayTime(0,2), 3);
+                        editor1.commit();
+                        break;
+                    case 1:
+                        Editor editor2=pref1.edit();
+                        editor2.putInt(CommonFunction.systemDelayTime(0,2), 3);
+                        editor2.commit();
+                        break;
+                    case 2:
+                        Editor editor3=pref1.edit();
+                        editor3.putInt(CommonFunction.systemDelayTime(0,2), 3);
+                        editor3.commit();
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        break;
+                }
                 Toast.makeText(getApplicationContext(),"检查更新",Toast.LENGTH_SHORT).show();
                 Utils.init(getApplicationContext());
                 checkUpdate.upgradeApk(getApplicationContext());

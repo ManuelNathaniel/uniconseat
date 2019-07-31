@@ -422,7 +422,7 @@ public class checkUpdate {
                     curVersionName = getVersionName();
                     if (Integer.parseInt(netVersionCode) >= curVersionCode){
                         if (compareVersion(curVersionName,netVersionName) == 1){
-                            if (MainActivity.update) return;
+                            if (MainActivity.update == 1) return;
                             Handler handlerThree=new Handler(Looper.getMainLooper());
                             handlerThree.post(new Runnable(){
                                 public void run(){
@@ -442,7 +442,7 @@ public class checkUpdate {
 
                 }catch (IOException | JSONException e){
                     e.printStackTrace();
-                    if (MainActivity.update) return;
+                    if (MainActivity.update == 1) return;
                     Handler handlerThree=new Handler(Looper.getMainLooper());
                     handlerThree.post(new Runnable(){
                         public void run(){
@@ -451,7 +451,7 @@ public class checkUpdate {
                     });
                 } catch (Exception e) {
                     e.printStackTrace();
-                    if (MainActivity.update) return;
+                    if (MainActivity.update == 1) return;
                     Handler handlerThree=new Handler(Looper.getMainLooper());
                     handlerThree.post(new Runnable(){
                         public void run(){
