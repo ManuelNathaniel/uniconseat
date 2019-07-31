@@ -151,6 +151,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 Intent intentLogin = new Intent(MainActivity.this,LoginActivity.class);
                 startActivity(intentLogin);
            }else {
+               SharedPreferences exitToBack = this.getSharedPreferences("exitToBack",MODE_PRIVATE);
+               SharedPreferences.Editor exitToBackeditor = exitToBack.edit();
+               exitToBackeditor.putString("exitToBack", "back");
+               exitToBackeditor.commit();
                 Toast.makeText(getApplicationContext(),"欢迎使用联创座位系统",Toast.LENGTH_SHORT).show();
            }
         }

@@ -27,6 +27,7 @@ public class LoginActivity extends BaseActivity {
     String serialIMEI,serialIMEIAndTime,secreKey,android_id=null;//算法生成的唯一标识号、授权码、验证码
     public static final int REQUEST_READ_PHONE_STATE = 1;
     public String applyTime,dueTime,applyTimeEncrpy;//申请时间，到期时间
+    public static boolean exit2back = false;
 
     @SuppressLint("HardwareIds")
     @Override
@@ -143,6 +144,11 @@ public class LoginActivity extends BaseActivity {
                     logineditor.commit();
 
                     //切换到Help页面
+                    SharedPreferences exitToBack = this.getSharedPreferences("exitToBack",MODE_PRIVATE);
+                    SharedPreferences.Editor exitToBackeditor = exitToBack.edit();
+                    exitToBackeditor.putString("exitToBack", "exit");
+                    exitToBackeditor.commit();
+
                     Intent intenthelp = new Intent(getApplicationContext(),ScrollingActivity.class);
                     startActivity(intenthelp);
                     ToastCustom.passValue(5000,1000,2,0,100);

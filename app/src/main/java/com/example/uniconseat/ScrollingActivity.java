@@ -3,6 +3,7 @@ package com.example.uniconseat;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -25,13 +26,37 @@ public class ScrollingActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.scrol_toolbar);
         setSupportActionBar(toolbar);
         Button exitbutton = findViewById(R.id.exit_bt);
-        exitbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActivityCollector.finishAll();
-                System.exit(0);
-            }
-        });
+        String exit2Back = "exit";
+        SharedPreferences exitToBack = getSharedPreferences("exitToBack",MODE_PRIVATE);
+        exit2Back = exitToBack.getString("exitToBack","exit");
+        if (exit2Back.equals("exit")){
+            exitbutton.setText("退出");
+            exitbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SharedPreferences exitToBack = getSharedPreferences("exitToBack",MODE_PRIVATE);
+                    SharedPreferences.Editor exitToBackeditor = exitToBack.edit();
+                    exitToBackeditor.putString("exitToBack", "back");
+                    exitToBackeditor.commit();
+                    ActivityCollector.finishAll();
+                    System.exit(0);
+                }
+            });
+        }else{
+            exitbutton.setText("返回");
+            exitbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    SharedPreferences exitToBack = getSharedPreferences("exitToBack",MODE_PRIVATE);
+                    SharedPreferences.Editor exitToBackeditor = exitToBack.edit();
+                    exitToBackeditor.putString("exitToBack", "back");
+                    exitToBackeditor.commit();
+                    ActivityCollector.finishAll();
+                    onBackPressed();
+                }
+            });
+        }
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.scrol_fab);
         fab.setOnClickListener(new View.OnClickListener() {

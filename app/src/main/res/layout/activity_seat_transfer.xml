@@ -293,7 +293,7 @@
             android:padding="3dp"
             android:gravity="center_horizontal"
             android:text="您的剩余预约时长必须大于70分钟"
-            android:textColor="#009688"
+            android:textColor="@color/colorPrimary"
             android:textSize="12sp" />
 
     </RelativeLayout>

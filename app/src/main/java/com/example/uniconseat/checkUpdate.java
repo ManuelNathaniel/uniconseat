@@ -253,13 +253,15 @@ public class checkUpdate {
                     }
 
                     if (file.exists()){
-                        Handler handlerT1=new Handler(Looper.getMainLooper());
-                        handlerT1.post(new Runnable(){
-                            public void run(){
-                                installApk("安装包已准备完毕，是否进行安装？",file);
-                            }
-                        });
-                        return;
+                        if (file.length()==all){
+                            Handler handlerT1=new Handler(Looper.getMainLooper());
+                            handlerT1.post(new Runnable(){
+                                public void run(){
+                                    installApk("安装包已准备完毕，是否进行安装？",file);
+                                }
+                            });
+                            return;
+                        }
                     }
 
                     FileOutputStream fos = new FileOutputStream(file);
@@ -518,7 +520,7 @@ public class checkUpdate {
         android.support.v7.app.AlertDialog.Builder builder=new android.support.v7.app.AlertDialog.Builder(context,R.style.dialog_style);
         builder.setIcon(R.drawable.upgrade);
         builder.setTitle("联创座位系统");
-        builder.setMessage(msg);
+        builder.setMessage(msg+"\n 建议使用浏览器打开");
         builder.setCancelable(false);
         builder.setPositiveButton("安装", new DialogInterface.OnClickListener() {
             @Override
