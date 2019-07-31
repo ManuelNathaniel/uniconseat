@@ -62,6 +62,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     static int Length;
     public boolean TipsJumpServiceStarted;
     public static boolean mainActivityStart = false;
+    public static boolean update;
 
     //全局变量
     private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
@@ -73,7 +74,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         setContentView(R.layout.activity_main);
         //检查更新
         SharedPreferences pref1 = getSharedPreferences("checkUpdate",MODE_PRIVATE);
-        boolean update = pref1.getBoolean(CommonFunction.systemDelayTime(0,2),false);
+        update = pref1.getBoolean(CommonFunction.systemDelayTime(0,2),false);
         if (!update){
             Editor editor1=pref1.edit();
             editor1.putBoolean(CommonFunction.systemDelayTime(0,2), true);
@@ -86,7 +87,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         Intent intentLogService = new Intent(getApplicationContext(),LogService.class);
         startService(intentLogService);
 
-//
 //        Intent intentTiming= new Intent(MainActivity.this,TimingTasks.class);
 //        startService(intentTiming);
 
@@ -137,7 +137,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 Intent intentLogin = new Intent(MainActivity.this,LoginActivity.class);
                 startActivity(intentLogin);
            }else {
-                Toast.makeText(getApplicationContext(),"欢迎使用座位预约系统",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"欢迎使用联创座位系统",Toast.LENGTH_SHORT).show();
            }
         }
 
@@ -146,9 +146,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intentBottom = new Intent(MainActivity.this,BottomNavigationActivity.class);
-//                startActivity(intentBottom);
-
                 Snackbar.make(view, "祝您生活愉快，学业有成！", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }

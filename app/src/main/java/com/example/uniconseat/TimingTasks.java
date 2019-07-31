@@ -818,17 +818,23 @@ public class TimingTasks extends Service {
                         //是否预约成功：1.是 --> 处理预约结果  2.否 --> 再进行第二次预约
                         //积分满足 且第一次没有预约成功，则进行下面的步骤,连续检测5次
                         //succeed = 0;//测试
-                        if (succeed != 1){
-                            Log.e("TimingTask","再一次预约");
-                                if (actok == 3 ){
-                                    succeed = parseStatusOfEachSeatAndReserve(result,client);
-                                    empty_num = 0;//每次检测结束座位数量置零
-                                }else if (succeed == 5){
-                                    client = obtainAndParseStatus(client);
-                                    result =loadRsvSta("Timingdata");
-                                    succeed = parseStatusOfEachSeatAndReserve(result,client);
-                                    empty_num = 0;//每次检测结束座位数量置零
-                                }
+                        while (succeed != 1){
+                            if (actok == 0){
+                                Log.e("TimingTaskWhile","阅览室无座");
+                                succeed = parseStatusOfEachSeatAndReserve(result,client);
+                                empty_num = 0;//每次检测结束座位数量置零
+                            }else if (actok == 3){
+                                Log.e("TimingTaskWhile","6:30之后进行预约");
+                                succeed = parseStatusOfEachSeatAndReserve(result,client);
+                                empty_num = 0;//每次检测结束座位数量置零
+                            }else if (succeed == 5){
+                                Log.e("TimingTaskWhile","预约冲突");
+                                client = obtainAndParseStatus(client);
+                                result =loadRsvSta("Timingdata");
+                                succeed = parseStatusOfEachSeatAndReserve(result,client);
+                                empty_num = 0;//每次检测结束座位数量置零
+                            }
+                            Thread.sleep(1000);
                         }
                         if (actok == 1 ){//此处表示预约成功通知    该通知必须为悬挂不回收通知，等待用户滑动删除，默认振动+默认铃声
                             tips();

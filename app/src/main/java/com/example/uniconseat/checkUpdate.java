@@ -422,6 +422,7 @@ public class checkUpdate {
                     curVersionName = getVersionName();
                     if (Integer.parseInt(netVersionCode) >= curVersionCode){
                         if (compareVersion(curVersionName,netVersionName) == 1){
+                            if (MainActivity.update) return;
                             Handler handlerThree=new Handler(Looper.getMainLooper());
                             handlerThree.post(new Runnable(){
                                 public void run(){
@@ -441,20 +442,20 @@ public class checkUpdate {
 
                 }catch (IOException | JSONException e){
                     e.printStackTrace();
+                    if (MainActivity.update) return;
                     Handler handlerThree=new Handler(Looper.getMainLooper());
                     handlerThree.post(new Runnable(){
                         public void run(){
                             accessError("连接超时，重新连接");
-                            //Toast.makeText(context,"检查出错",Toast.LENGTH_SHORT).show();
                         }
                     });
                 } catch (Exception e) {
                     e.printStackTrace();
+                    if (MainActivity.update) return;
                     Handler handlerThree=new Handler(Looper.getMainLooper());
                     handlerThree.post(new Runnable(){
                         public void run(){
                             accessError("获取版本信息出错");
-                            //Toast.makeText(context,"获取版本信息出错",Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
