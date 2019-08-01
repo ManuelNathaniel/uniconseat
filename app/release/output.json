@@ -1,1 +1,1 @@
-[{"outputType":{"type":"APK"},"apkData":{"type":"MAIN","splits":[],"versionCode":5,"versionName":"5.1.9.27","enabled":true,"outputFile":"app-release.apk","fullName":"release","baseName":"release"},"path":"app-release.apk","properties":{}}]
+[{"outputType":{"type":"APK"},"apkData":{"type":"MAIN","splits":[],"versionCode":5,"versionName":"5.1.9.27","enabled":true,"outputFile":"app-release.apk","fullName":"release","baseName":"release"},"path":"app-release.apk","properties":{},"upTips":"更新了已知bug；优化了定时任务和快速抢座板块；优化了界面颜色"}]

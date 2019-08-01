@@ -413,20 +413,27 @@ public class checkUpdate {
                     JSONObject apkObject = new JSONObject(apkData);
                     netVersionCode = apkObject.getString("versionCode");
                     netVersionName = apkObject.getString("versionName");
-
-                    Request loginRequest1 = new Request.Builder().url(upTipsUri).build();//向服务器发送登录请求，包括ID, password
-                    Response loginResponse1 = client.newCall(loginRequest1).execute();//执行登录请求
-                    upTips = loginResponse1.body().string();//得到响应数据
-
-                    JSONArray jsonArray1 = new JSONArray(upTips);
-                    String output1 = jsonArray1.getString(0);
-                    JSONObject upObject = new JSONObject(output1);
                     try {
-                        upTips = upObject.getString("upTips");
-                        Log.e("upTips:",upTips);
-                    }catch (Exception ee){
-                        ee.printStackTrace();
+                        upTips = apkObject.getString("upTips");
+                    }catch (Exception eu){
+                        eu.printStackTrace();
                     }
+
+//                    Request loginRequest1 = new Request.Builder().url(upTipsUri).build();//向服务器发送登录请求，包括ID, password
+//                    Response loginResponse1 = client.newCall(loginRequest1).execute();//执行登录请求
+//                    upTips = loginResponse1.body().string();//得到响应数据
+
+//                    JSONArray jsonArray1 = new JSONArray(upTips);
+//                    String output1 = jsonArray1.getString(0);
+//                    JSONObject upObject = new JSONObject(output1);
+//                    try {
+//                        upTips = upObject.getString("upTips");
+//                        JSONObject upObject2 = new JSONObject(upTips);
+//                        upTips = upObject2.getString("upTips");
+//                        Log.e("upTips:",upTips);
+//                    }catch (Exception ee){
+//                        ee.printStackTrace();
+//                    }
 
                     Log.e("netVersionCode",netVersionCode);
                     Log.e("netVersionName:",netVersionName);
