@@ -99,6 +99,7 @@ public class TimingTasks extends Service {
     public boolean user2s = false; boolean user2e = false; boolean user2Accept = false;
     public boolean creditScore = true;
     public String[] candidateArray = new String[4];
+    private String loginCredit;
 
     /* 系统需要返回给用户的结果信息 */
     private static String ToastText = "";//预约状态提示信息
@@ -903,6 +904,21 @@ public class TimingTasks extends Service {
 /*--------------------------------------------------------------------------------------------------------------------------------------
                                                                   操作模块
 --------------------------------------------------------------------------------------------------------------------------------------*/
+public OkHttpClient  loginOperation(OkHttpClient okHttpClient) throws IOException {
+    //1. 登录
+    String loginUrl = new StringBuilder().append("http://seat.ysu.edu.cn/ClientWeb/pro/ajax/login.aspx?act=login&id=").append(user1[1]).append("&pwd=")
+            .append(user1[2]).append("&role=512&aliuserid=&schoolcode=&wxuserid=&_nocache=1551511783772")
+            .toString();
+    Request loginRequest = new Request.Builder().url(loginUrl).build();//向服务器发送登录请求，包括ID, password
+    Response loginResponse = okHttpClient.newCall(loginRequest).execute();//执行登录请求
+    String loginReturn = loginResponse.body().string();//得到响应数据
+    loginCredit = loginReturn;
+    Log.e("TimingTask：登录参数",loginReturn);
+    //解析登录结果
+    parseResponseMsg(loginReturn,"user1");
+
+    return okHttpClient;
+}
     //登录并进行预约
     public  int loginAndSetReserve(OkHttpClient client,String dev_id,String user) throws IOException {
         //0.1. 准备工作。检查用户信息
@@ -932,14 +948,6 @@ public class TimingTasks extends Service {
         String start_time = CommonFunction.getMatcher("(.*):",startTime)+CommonFunction.getMatcher(":(.*)",startTime);
         String end_time = CommonFunction.getMatcher("(.*):",endTime)+CommonFunction.getMatcher(":(.*)",endTime);
 
-        //1. 登录
-        String loginUrl = new StringBuilder().append("http://seat.ysu.edu.cn/ClientWeb/pro/ajax/login.aspx?act=login&id=").append(user1[1]).append("&pwd=")
-                .append(user1[2]).append("&role=512&aliuserid=&schoolcode=&wxuserid=&_nocache=1551511783772")
-                .toString();
-        Request loginRequest = new Request.Builder().url(loginUrl).build();//向服务器发送登录请求，包括ID, password
-        Response loginResponse = client.newCall(loginRequest).execute();//执行登录请求
-        String loginReturn = loginResponse.body().string();//得到响应数据
-        Log.e("TimingTask：登录参数",loginReturn);
 
         //2. 选座
         String setResvUrl = new StringBuilder().append("http://seat.ysu.edu.cn/ClientWeb/pro/ajax/reserve.aspx?dialogid=&dev_id=").append(dev_id)
@@ -1254,6 +1262,10 @@ public class TimingTasks extends Service {
         //3.    获取系统时间
         //http://202.206.242.87/ClientWeb/pro/ajax/device.aspx?byType=devcls&classkind=8&display=fp&md=d&room_id=100457213
         // &purpose=&selectOpenAty=&cld_name=default&date=2019-06-21&fr_start=14%3A00&fr_end=21%3A00&act=get_rsv_sta&_=1561082040042
+
+        /**
+         * http://202.206.242.87/ClientWeb/pro/ajax/device.aspx?byType=devcls&classkind=8&display=fp&md=d&room_id=100457211
+         * &purpose=&selectOpenAty=&cld_name=default&date=2019-08-01&fr_start=07%3A30&fr_end=08%3A30&act=get_rsv_sta&_=156461580847**/
         String roomIdUrl = urlCommonFirstPara.concat(user1[4]).concat(urlCommonSecondPara)
                 .concat(date).concat("&fr_start=").concat(fr_start).concat("&fr_end=").concat(fr_end)
                 .concat(urlCommonThirdPara).concat(user1[8]);//目标阅览室url
@@ -1398,26 +1410,21 @@ public class TimingTasks extends Service {
         }
     }
     public OkHttpClient getCredit(OkHttpClient client) throws IOException {
-        //1. 登录
-        String loginUrl = new StringBuilder().append("http://seat.ysu.edu.cn/ClientWeb/pro/ajax/login.aspx?act=login&id=").append(user1[1]).append("&pwd=")
-                .append(user1[2]).append("&role=512&aliuserid=&schoolcode=&wxuserid=&_nocache=1551511783772")
-                .toString();
-        Request loginRequest = new Request.Builder().url(loginUrl).build();//向服务器发送登录请求，包括ID, password
-        Response loginResponse = client.newCall(loginRequest).execute();//执行登录请求
-        String loginReturn = loginResponse.body().string();//得到响应数据
-        Log.e("TimingTask-getCredit：登录",loginReturn);
-        //解析登录结果
-        parseResponseMsg(loginReturn,"user1");
+        //登录
+        client = loginOperation(client);
+        Log.e("TimingTask-getCredit：登录",loginCredit);
+
         if (actok == 6){
             sessionNull = true;
         }else if (actok == 4){
             creditScore = false;
-            String data  = parseJSONResponse(loginReturn);
+            String data  = parseJSONResponse(loginCredit);
             parseJSONScore(data);
         }else {
-            String data2 = parseJSONResponse(loginReturn);
+            String data2 = parseJSONResponse(loginCredit);
             parseJSONScore(data2);
         }
+        actok = 0;
         return client;
     }
 }

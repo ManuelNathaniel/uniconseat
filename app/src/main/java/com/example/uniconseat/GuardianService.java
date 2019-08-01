@@ -366,8 +366,8 @@ public class GuardianService extends Service {
                     SharedPreferences user1sharedPreferences = getSharedPreferences("diffSysNet",MODE_PRIVATE);
                     diffSysNet = user1sharedPreferences.getLong("diffSysNet",0);
                     try {
-                        Log.e("serverOpen","计算服务器时间");
-                        serverDate = CommonFunction.longToDate(CommonFunction.systemTimeDate().getTime() + diffSysNet,"yyyy-MM-dd HH:mm:ss");
+                        serverDate = CommonFunction.longToDate(CommonFunction.systemTimeDate().getTime() - diffSysNet,"yyyy-MM-dd HH:mm:ss");
+                        Log.e("serverOpen","计算服务器时间"+ serverDate);
                     } catch (ParseException e) {
                         e.printStackTrace();
                         Log.e("serverOpen","计算失败，获取服务器时间");

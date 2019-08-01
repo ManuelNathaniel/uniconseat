@@ -375,6 +375,8 @@ public class checkUpdate {
      */
     public static void getVersionFromService(){
         final String finalUri = "https://raw.githubusercontent.com/ManuelNathaniel/uniconseat/master/app/release/output.json";
+        final String upTipsUri = "https://raw.githubusercontent.com/ManuelNathaniel/uniconseat/master/app/release/upTips.json";
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -411,11 +413,10 @@ public class checkUpdate {
                     JSONObject apkObject = new JSONObject(apkData);
                     netVersionCode = apkObject.getString("versionCode");
                     netVersionName = apkObject.getString("versionName");
-                    try {
-                        upTips = apkObject.getString("upTips");
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
+
+                    Request loginRequest1 = new Request.Builder().url(upTipsUri).build();//向服务器发送登录请求，包括ID, password
+                    Response loginResponse1 = client.newCall(loginRequest1).execute();//执行登录请求
+                    upTips = loginResponse1.body().string();//得到响应数据
 
                     Log.e("netVersionCode",netVersionCode);
                     Log.e("netVersionName",netVersionName);
@@ -520,7 +521,7 @@ public class checkUpdate {
         android.support.v7.app.AlertDialog.Builder builder=new android.support.v7.app.AlertDialog.Builder(context,R.style.dialog_style);
         builder.setIcon(R.drawable.upgrade);
         builder.setTitle("联创座位系统");
-        builder.setMessage(msg+"\n 建议使用浏览器打开4");
+        builder.setMessage(msg+"\n 建议使用浏览器打开");
         builder.setCancelable(false);
         builder.setPositiveButton("安装", new DialogInterface.OnClickListener() {
             @Override
