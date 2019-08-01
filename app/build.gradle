@@ -7,7 +7,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 5
-        versionName "5.1.9.26"
+        versionName "5.1.9.27"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         // Specifies the ABI configurations of your native
