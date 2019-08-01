@@ -419,7 +419,7 @@ public class checkUpdate {
                     upTips = loginResponse1.body().string();//得到响应数据
 
                     Log.e("netVersionCode",netVersionCode);
-                    Log.e("netVersionName",netVersionName);
+                    Log.e("netVersionName:",netVersionName);
 
                     curVersionCode = getVersionCode();
                     curVersionName = getVersionName();
