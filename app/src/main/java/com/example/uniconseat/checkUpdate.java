@@ -421,7 +421,12 @@ public class checkUpdate {
                     JSONArray jsonArray1 = new JSONArray(upTips);
                     String output1 = jsonArray1.getString(0);
                     JSONObject upObject = new JSONObject(output1);
-                    upTips = upObject.getString("upTips");
+                    try {
+                        upTips = upObject.getString("upTips");
+                        Log.e("upTips:",upTips);
+                    }catch (Exception ee){
+                        ee.printStackTrace();
+                    }
 
                     Log.e("netVersionCode",netVersionCode);
                     Log.e("netVersionName:",netVersionName);
