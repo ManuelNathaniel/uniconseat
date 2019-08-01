@@ -417,6 +417,8 @@ public class checkUpdate {
                     Request loginRequest1 = new Request.Builder().url(upTipsUri).build();//向服务器发送登录请求，包括ID, password
                     Response loginResponse1 = client.newCall(loginRequest1).execute();//执行登录请求
                     upTips = loginResponse1.body().string();//得到响应数据
+                    JSONObject upObject = new JSONObject(upTips);
+                    upTips = upObject.getString("upTips");
 
                     Log.e("netVersionCode",netVersionCode);
                     Log.e("netVersionName:",netVersionName);
